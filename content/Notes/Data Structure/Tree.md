@@ -152,3 +152,8 @@ TreeNode build(int[]nums, int left, int right){
     return root;
 }
 ```
+
+[**tree from preorder/inorder**](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+```Java
+
+```
