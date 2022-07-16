@@ -33,7 +33,7 @@ toc: false
 
 以上一版本为基础进行开发，编写新的人体手势数据结构，共同开发基于轨迹的自定义手势识别并重写整体的实时数据处理流程 
 
-[项目主页](http://www.touchlesscomputing.org/) | [项目主页2]([UCL MotionInput Technology Helps Improve Lives (intel.com)](https://www.intel.com/content/www/us/en/company-overview/wonderful/motion-input-technology.html)) 
+[项目主页](http://www.touchlesscomputing.org/)  [项目主页2]([UCL MotionInput Technology Helps Improve Lives (intel.com)](https://www.intel.com/content/www/us/en/company-overview/wonderful/motion-input-technology.html)
 
 **通过Google Earth Engine提供时空NDVI数据可视化与分析** | 本科毕业设计 
 
