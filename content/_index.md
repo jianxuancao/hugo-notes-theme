@@ -1,5 +1,5 @@
 ---
-title: Home Page
+title: Home
 type: book # Do not modify.
 toc: false
 ---
