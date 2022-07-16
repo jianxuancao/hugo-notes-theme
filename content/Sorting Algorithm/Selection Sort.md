@@ -1,6 +1,6 @@
 ---
 # Title, summary, and page position.
-title: 数据结构
+title: Selection Sort
 linktitle: Selection Sort
 summary:
 weight: 2

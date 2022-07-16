@@ -1,7 +1,7 @@
 ---
 # Title, summary, and page position.
-title: 排序
-linktitle: 排序
+title: Sorting Algorithm
+linktitle: Sorting Algorithm
 summary: Notes on Python data structures.
 weight: 2
 icon: python

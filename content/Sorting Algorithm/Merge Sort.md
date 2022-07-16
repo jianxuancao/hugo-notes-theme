@@ -1,6 +1,6 @@
 ---
 # Title, summary, and page position.
-title: 数据结构
+title: Merge Sort
 linktitle: Merge Sort
 summary:
 weight: 2

@@ -1,6 +1,6 @@
 ---
 # Title, summary, and page position.
-title: 数据结构
+title: LinkedList
 linktitle: LinkedList
 summary: Notes on Python data structures.
 weight: 2

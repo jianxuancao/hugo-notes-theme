@@ -1,6 +1,6 @@
 ---
 # Title, summary, and page position.
-title: 数据结构
+title: Bubble sort
 linktitle: Bubble sort
 summary:
 weight: 2
