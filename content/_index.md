@@ -1,5 +1,5 @@
 ---
-title: Home
+title: Home|CV
 type: book # Do not modify.
 toc: false
 
