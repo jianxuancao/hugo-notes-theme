@@ -1,10 +1,10 @@
 ---
 # Title, summary, and page position.
 title: 数据结构
-linktitle: 数据结构
+linktitle: LinkedList
 summary: Notes on Python data structures.
 weight: 2
-icon: python
+icon: Python 
 icon_pack: fab
 
 # Page metadata.
@@ -13,4 +13,4 @@ type: book # Do not modify.
 toc: false
 ---
 
-{{< list_children >}}
+{{< list_children >}}A recommended reading list for the course.
