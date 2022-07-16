@@ -2,14 +2,13 @@
 title: Home | CV
 type: book # Do not modify.
 toc: false
-
 ---
 
 ## 教育经历
 
-**伦敦大学学院 University Collage London** | 软件系统工程 硕士
+**伦敦大学学院 University Collage London** | 软件系统工程 硕士 | Merit
 
-**英国埃塞克斯大学 University of Essex** | 计算机科学 本科
+**英国埃塞克斯大学 University of Essex** | 计算机科学 本科 | Distinction
 
 ------
 
