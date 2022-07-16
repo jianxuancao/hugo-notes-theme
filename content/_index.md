@@ -26,7 +26,7 @@ toc: false
 
 目前仍在开发过程中，根据来自微软和英特尔项目主管人员的项目目标开发，主要负责Windows WPF前端组件的动态生成与设计，为辅助残障儿童开发可视化编程工具。
 
-[**UCL Motioninput V3**](http://www.touchlesscomputing.org/) | [项目主页2](https://www.intel.com/content/www/us/en/company-overview/wonderful/motion-input-technology.html) | 研究生在校实习生, 与微软, Intel, IBM的项目主管合作
+[**UCL Motioninput V3(微软主页)**](http://www.touchlesscomputing.org/) | [Intel主页](https://www.intel.com/content/www/us/en/company-overview/wonderful/motion-input-technology.html) | 研究生在校实习生, 与微软, Intel, IBM的项目主管合作
 
 以上一版本为基础进行开发，编写新的人体手势数据结构，共同开发基于轨迹的自定义手势识别并重写整体的实时数据处理流程。 
 
