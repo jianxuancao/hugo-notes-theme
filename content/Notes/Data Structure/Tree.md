@@ -124,3 +124,31 @@ public void flatten(TreeNode root) {
 }
 ```
 
+[**maximum tree**](https://leetcode.cn/problems/maximum-binary-tree/)
+```Java
+public TreeNode constructMaximumBinaryTree(int[] nums) {
+    return build(nums, 0, nums.length-1);
+}
+
+TreeNode build(int[]nums, int left, int right){
+    if(right < left){ // base case
+        return null;
+    }
+
+    // find max and it's pointer
+    int max = Integer.MIN_VALUE;
+    int pointer = -1;
+    for(int i = left; i <= right; i++){
+        if(nums[i] > max){
+            max = nums[i];
+            pointer = i;
+        }
+    }    
+
+    TreeNode root = new TreeNode(max);
+    root.left = build(nums, left, pointer - 1);  // parse the left 
+    root.right = build(nums, pointer + 1, right);  // parse the right 
+    
+    return root;
+}
+```
