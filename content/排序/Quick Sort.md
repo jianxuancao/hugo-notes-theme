@@ -1,7 +1,7 @@
 ---
 # Title, summary, and page position.
 title: 数据结构
-linktitle: quick sort
+linktitle: Quick sort
 summary:
 weight: 2
 icon: python
