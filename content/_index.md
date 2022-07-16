@@ -28,8 +28,8 @@ toc: false
 
 [项目主页](https://marketplace.visualstudio.com/items?itemName=VisualThreadingAccessibleDragandDropcoding.VisualThreading)
 
-**UCL Motioninput V3** | 研究生在校实习生 
-与来自微软、英特尔和IBM的项目主管人员合作，以上一版本为基础进行开发，编写新的人体手势数据结构，共同开发基于轨迹的自定义手势识别并重写整体的实时数据处理流程，。
+**UCL Motioninput V3** | 研究生在校实习生，与微软，英特尔，IBM的项目主管人员合作
+以上一版本为基础进行开发，编写新的人体手势数据结构，共同开发基于轨迹的自定义手势识别并重写整体的实时数据处理流程，。
 
 [项目主页](http://www.touchlesscomputing.org/)  [项目主页2](https://www.intel.com/content/www/us/en/company-overview/wonderful/motion-input-technology.html)
 
