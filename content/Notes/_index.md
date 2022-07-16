@@ -2,7 +2,7 @@
 # Title, summary, and page position.
 title: Notes
 linktitle: Notes
-summary: Algorithm Notes.
+summary: 算法笔记/Algorithm Notes.
 weight: 2
 
 # Page metadata.
