@@ -1,5 +1,5 @@
 ---
-title: ✍️ Notes
+title: Notes
 type: book # Do not modify.
 toc: false
 ---
