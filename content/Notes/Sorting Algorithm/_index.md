@@ -11,7 +11,7 @@ type: book # Do not modify.
 toc: false
 ---
 
-所谓前序位置和后序位置，就是在递归传入之前，和传回来的值
+所谓前序位置和后序位置，就是刚刚进入一个位置的时候，和离开的时候
 ```Java
 void traverse(Listnode head){
 	//前序，如果想正着打印一个链表，可以在正序位置print
@@ -19,5 +19,7 @@ void traverse(Listnode head){
 	//后序，如果想倒着打印一个链表，可以在后序位置print
 }
 ```
+中序位置则是二叉树上的左child都遍历完了，即将开始便利右child时
+
 
 {{< list_children >}}
