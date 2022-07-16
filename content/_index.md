@@ -22,23 +22,18 @@ toc: false
 
 ## 项目经历
 
-**Visual Studio 可视化编程插件** | 研究生在校实习生
+[**Visual Studio 可视化编程插件**](https://marketplace.visualstudio.com/items?itemName=VisualThreadingAccessibleDragandDropcoding.VisualThreading) | 研究生在校实习生
 
 目前仍在开发过程中，根据来自微软和英特尔项目主管人员的项目目标开发，主要负责Windows WPF前端组件的动态生成与设计，为辅助残障儿童开发可视化编程工具。
 
-[项目主页](https://marketplace.visualstudio.com/items?itemName=VisualThreadingAccessibleDragandDropcoding.VisualThreading)
+[**UCL Motioninput V3**](http://www.touchlesscomputing.org/) | 研究生在校实习生, 与微软, Intel, IBM的项目主管合作
 
-**UCL Motioninput V3** | 研究生在校实习生, 与微软, Intel, IBM的项目主管合作
+以上一版本为基础进行开发，编写新的人体手势数据结构，共同开发基于轨迹的自定义手势识别并重写整体的实时数据处理流程。 [项目主页2](https://www.intel.com/content/www/us/en/company-overview/wonderful/motion-input-technology.html)
 
-以上一版本为基础进行开发，编写新的人体手势数据结构，共同开发基于轨迹的自定义手势识别并重写整体的实时数据处理流程，。
-
-[项目主页](http://www.touchlesscomputing.org/)  [项目主页2](https://www.intel.com/content/www/us/en/company-overview/wonderful/motion-input-technology.html)
-
-**通过Google Earth Engine提供时空NDVI数据可视化与分析** | 本科毕业设计 
+[**通过Google Earth Engine提供时空NDVI数据可视化与分析**](https://github.com/jianxuancao/CE301) | 本科毕业设计 
 
 通过Google Earth Engine的在线卫星资源和服务器算力，使用html开发一个实用工具，为学者提供免费的全分辨率 NDVI(常态化差值植生指标) 时空数据分析服务。
 
-[项目仓库](https://github.com/jianxuancao/CE301)
 ------
 
 **我的算法笔记 | Welcome to my algorithm review notebook.**
