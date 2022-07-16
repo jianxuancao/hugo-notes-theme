@@ -2,7 +2,7 @@
 # Title, summary, and page position.
 title: Sorting Algorithm
 linktitle: Sorting Algorithm
-summary: Notes on Python data structures.
+summary: Notes on Sorting Algorithm.
 weight: 3
 
 # Page metadata.
