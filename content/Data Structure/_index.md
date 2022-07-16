@@ -4,7 +4,7 @@ title: Data Structure
 linktitle: Data Structure
 summary: Notes on Python data structures.
 weight: 2
-icon: python
+icon: Java
 icon_pack: fab
 
 # Page metadata.
