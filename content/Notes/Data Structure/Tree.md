@@ -155,5 +155,29 @@ TreeNode build(int[]nums, int left, int right){
 
 [**tree from preorder/inorder**](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 ```Java
+HashMap<Integer, Integer> valToIndex = new HashMap<>();
 
+public TreeNode buildTree(int[] preorder, int[] inorder) {
+    for (int i = 0; i < inorder.length; i++) { // 放入hashmap方便读取
+        valToIndex.put(inorder[i], i);
+    }
+    return build(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
+}
+
+TreeNode build(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd) {
+    
+    if (preStart > preEnd) {  // basecase
+        return null;
+    }
+
+    int rootVal = preorder[preStart]; // root 节点对应的值就是前序遍历数组的第一个元素
+    int rootindex = valToIndex.get(rootVal); // rootVal 在中序遍历数组中的索引
+
+    int leftSize = rootindex - inStart;
+    TreeNode root = new TreeNode(rootVal);
+    
+    root.left = build(preorder, preStart + 1, preStart + leftSize, inorder, inStart, rootindex - 1);
+    root.right = build(preorder, preStart + leftSize + 1, preEnd, inorder, rootindex + 1, inEnd);
+    return root;
+}
 ```
