@@ -310,7 +310,7 @@ String traverse(TreeNode root) {
 
     String subTree = left + "," + right + "," + root.val;
 
-	int freq = 0; // get a key, but if the key dose not exists, freq is 0
+	int freq = 0; // if the subtree dose not exists, freq is 0
     if(memo.containsKey(subTree)){
     	freq = memo.get(subTree); 
     }
