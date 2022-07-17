@@ -208,3 +208,118 @@ TreeNode build (int[] inorder, int inStart, int inEnd, int[] postorder, int post
     return root;
 }
 ```
+
+[**tree from preorder and postorder**](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/)
+```Java
+HashMap<Integer, Integer> valPointer = new HashMap<>();
+public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
+    for(int i = 0; i < postorder.length; i++){
+        valPointer.put(postorder[i], i );
+    }
+
+    return build(preorder, 0, preorder.length-1, postorder, 0 , postorder.length-1);
+}
+
+TreeNode build(int[]preorder, int preStart, int preEnd, int[]postorder, int postStart, int postEnd){
+    if(preStart > preEnd){ // tree的叶节点
+        return null;
+    }
+
+    if (preStart == preEnd) { // basecase
+        return new TreeNode(preorder[preStart]);
+    }
+    
+    int rootVal = preorder[preStart];
+    TreeNode root = new TreeNode(rootVal);
+    
+    int leftRootVal = preorder[preStart + 1]; // 从preorder里找到左的root值，去map查index
+    int index = valPointer.get(leftRootVal);
+    int leftSize = index - postStart + 1; // 左子树的元素个数
+
+    root.left = build(preorder, preStart + 1, preStart + leftSize, postorder, postStart, index);
+    root.right = build(preorder, preStart + leftSize + 1, preEnd, postorder, index + 1, postEnd - 1);
+
+    return root;
+}
+```
+
+[**serialize/deserialize**](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/)
+```Java
+// Encodes a tree to a single string.
+public String serialize(TreeNode root) {
+    StringBuilder sb = new StringBuilder();
+    serialize(root, sb);
+    return sb.toString();
+}
+
+void serialize (TreeNode root, StringBuilder sb){
+    if(root == null){
+        sb.append("#").append(",");
+        return;
+    }
+
+    sb.append(root.val).append(",");
+
+    serialize(root.left, sb);
+    serialize(root.right, sb);
+}
+
+// Decodes your encoded data to tree.
+public TreeNode deserialize(String data) {
+    LinkedList<String> nodes = new LinkedList<>();
+    for (String s : data.split(",")) {
+        nodes.addLast(s);
+    }
+    
+    TreeNode result = deserialize(nodes);
+    return result;
+}
+
+public TreeNode deserialize(LinkedList<String> nodes) {
+    if (nodes.isEmpty()) return null;
+
+    // 左侧=根节点
+    String first = nodes.removeFirst();
+    if (first.equals("#")) return null;
+    TreeNode root = new TreeNode(Integer.parseInt(first));
+
+    root.left = deserialize(nodes);
+    root.right = deserialize(nodes);
+
+    return root;
+}
+```
+
+[**find duplicate subtrees**](https://leetcode.cn/problems/find-duplicate-subtrees/)
+```Java
+HashMap<String, Integer> memo = new HashMap<>(); // 记录所有子树以及出现的次数
+ArrayList<TreeNode> result = new ArrayList<>(); // 记录重复的子树根节点
+
+public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+    traverse(root);
+    return result;
+}
+
+String traverse(TreeNode root) {
+    if (root == null) {
+        return "#";
+    }
+
+    String left = traverse(root.left);
+    String right = traverse(root.right);
+
+    String subTree = left + "," + right + "," + root.val;
+
+	int freq = 0; // get a key, but if the key dose not exists, freq is 0
+    if(memo.containsKey(subTree)){
+    	freq = memo.get(subTree); 
+    }
+    
+    if (freq == 1) { // 确保结果集不重复
+        result.add(root);
+    }
+    
+    memo.put(subTree, freq + 1); // 出现次数加一
+    return subTree;
+}
+```

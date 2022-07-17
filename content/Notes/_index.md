@@ -1,7 +1,7 @@
 ---
 # Title, summary, and page position.
-title: Notes
-linktitle: Notes
+title: My Notes
+linktitle: My Notes
 summary: 算法笔记/Algorithm Notes.
 weight: 2
 
