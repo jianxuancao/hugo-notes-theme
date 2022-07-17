@@ -44,7 +44,7 @@ public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 }
 ```
 
-[****]()
+[**基于一个节点按大小分割**](https://leetcode.cn/problems/partition-list/)
 ```Java
 public ListNode partition(ListNode head, int x) {
     ListNode smallerHead = new ListNode(-1);
