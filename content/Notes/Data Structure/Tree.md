@@ -171,13 +171,40 @@ TreeNode build(int[] preorder, int preStart, int preEnd, int[] inorder, int inSt
     }
 
     int rootVal = preorder[preStart]; // root 节点对应的值就是前序遍历数组的第一个元素
-    int rootindex = valToIndex.get(rootVal); // rootVal 在中序遍历数组中的索引
+    int rootindex = valToIndex.get(rootVal); // rootVal 在中序遍历数组中的索引, 以此来分割inorder序列
 
     int leftSize = rootindex - inStart;
     TreeNode root = new TreeNode(rootVal);
-    
+
     root.left = build(preorder, preStart + 1, preStart + leftSize, inorder, inStart, rootindex - 1);
     root.right = build(preorder, preStart + leftSize + 1, preEnd, inorder, rootindex + 1, inEnd);
+    return root;
+}
+```
+
+[**tree from inorder and postorder**](https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
+```Java
+HashMap<Integer, Integer> valToIndex = new HashMap<>();
+public TreeNode buildTree(int[] inorder, int[] postorder) {
+    for (int i = 0; i < inorder.length; i++) { // 放入hashmap方便读取
+        valToIndex.put(inorder[i], i);
+    }
+    return build(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1);
+}
+
+TreeNode build (int[] inorder, int inStart, int inEnd, int[] postorder, int postStart, int postEnd){
+    if (inStart > inEnd) { // base case
+        return null;
+    }
+
+    int rootVal = postorder[postEnd];
+    int rootIndex = valToIndex.get(rootVal);
+
+    TreeNode root = new TreeNode(rootVal);
+
+    root.left = build(inorder, inStart, rootIndex-1, postorder, postStart, postStart + rootIndex - inStart - 1); 
+    root.right = build(inorder, rootIndex + 1, inEnd, postorder, postStart + rootIndex - inStart, postEnd - 1);
+    
     return root;
 }
 ```
