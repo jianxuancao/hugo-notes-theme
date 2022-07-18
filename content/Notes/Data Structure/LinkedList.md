@@ -11,6 +11,77 @@ type: book # Do not modify.
 toc: false
 ---
 
+[**reverse list**]()
+```Java
+public ListNode reverseList(ListNode head) {
+    if(head == null || head.next == null){
+        return head;
+    }
+    
+    ListNode last = reverseList(head.next); 
+    // 此时head的next是逆链表的尾，但尾的next是null，所以把head.next.next(tail) = head, 再把head.next换成null，反转就完成了
+    head.next.next = head;
+    head.next = null;
+
+    return last;
+}
+```
+
+
+[**反转前N节点**]()
+```Java
+ListNode postHead = null;
+public ListNode reverseN(ListNode head, int count) {
+    if(count = 1){
+    	postHead = head.next;
+        return head;
+    }
+    
+    ListNode last = reverseList(head.next, count - 1); 
+    // 此时head的next是逆链表的尾，但尾的next是null，所以把head.next.next(tail) = head, 再把head.next换成null，反转就完成了
+    head.next.next = head;
+    // postHead是需反转之后的正序链表的头
+    head.next = postHead;
+
+    return last;
+}
+```
+
+
+[**k个一组反转**](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
+```Java
+public ListNode reverseKGroup(ListNode head, int k) {
+    // 先分割出需要反转的一组
+    ListNode start = head, tail = head;
+   	for(int i = 0; i < k; i++){
+   		if(tail == null){
+   			return head;
+   		}
+   		tail = tail.next;
+   	}
+
+   	start.next = reverse(start, tail);
+   	ListNode newHead = reverseKGroup(tail, k);
+
+   	return newHead;
+}
+
+ListNode reverse(ListNode a, ListNode b) {
+    ListNode pre, cur, nxt;
+    // pre是反转好的头, cur起指针作用, nxt就是下一个节点
+    pre = null; cur = a; nxt = a;
+    while(cur != b){ // 到b就结束
+        nxt = cur.next; // 跟cur = nxt一起，交换当前节点和下一个节点的位置
+        cur.next = pre; //头尾互换，（三个为一组）
+        pre = cur; // 让中间的值变为头
+        cur = nxt; // 前进
+    }
+    // 返回反转后的头结点
+    return pre;
+}
+```
+
+
 [**merge-two-sorted-lists**](https://leetcode.cn/problems/merge-two-sorted-lists/)
 ```Java
 public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
@@ -43,6 +114,7 @@ public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
     return dummy.next;
 }
 ```
+
 
 [**基于一个节点按大小分割**](https://leetcode.cn/problems/partition-list/)
 ```Java
@@ -243,5 +315,27 @@ ListNode detectCycle(ListNode head) {
         slow = slow.next;
     }
     return slow;
+}
+```
+
+[**回文**](https://leetcode.cn/problems/palindrome-linked-list/)
+还有一种方法是用快慢指针找到中点，然后反转左边的链表，再同步.next比较是否一致
+```Java
+ListNode left;
+public boolean isPalindrome(ListNode head) {
+	left = head;
+	return traverse(head);
+}
+boolean traverse(ListNode right){
+	if(right == null){
+		return true;
+	}
+
+	boolean result = traverse(right.next);
+
+	result = result && (right.val == left.val);
+
+	left = left.next;
+	return result;
 }
 ```
