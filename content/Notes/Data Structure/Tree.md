@@ -2,7 +2,7 @@
 # Title, summary, and page position.
 title: Tree
 linktitle: Tree
-summary: Notes on Python data structures.
+summary: Notes on data structures.
 weight: 2
 
 # Page metadata.

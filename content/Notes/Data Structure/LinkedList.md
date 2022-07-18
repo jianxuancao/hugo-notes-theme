@@ -2,7 +2,7 @@
 # Title, summary, and page position.
 title: LinkedList
 linktitle: LinkedList
-summary: Notes on Python data structures.
+summary: Notes on data structures.
 weight: 2
 
 # Page metadata.
