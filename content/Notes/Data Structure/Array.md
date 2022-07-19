@@ -104,9 +104,18 @@ int[] twoSum(int[] nums, int target) {  //左右指针
 ```
 
 
-[****]()
+[**反转数组**](https://leetcode.cn/problems/reverse-string/)
 ```Java
-
+public void reverseString(char[] s) {
+	int left = 0, right = s.length - 1;
+	while(left < right){
+		char leftTemp = s[left];
+		s[left] = s[right];
+		s[right] = leftTemp;
+		left++;
+		right--;
+	}
+}
 ```
 
 
