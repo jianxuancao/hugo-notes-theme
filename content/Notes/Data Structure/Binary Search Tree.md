@@ -117,7 +117,6 @@ TreeNode searchBST(TreeNode root, int target) {
 
 
 [**插入**]()
-注意！不适用于平衡二叉树
 ```Java
 TreeNode insertIntoBST(TreeNode root, int val) {
     if (root == null) return new TreeNode(val); // 找到空位，插入新节点
