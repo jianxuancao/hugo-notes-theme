@@ -45,10 +45,22 @@ public int removeElement(int[] nums, int val) {
 ```
 
 
-[****]()
+[**移动0到末尾**](https://leetcode.cn/problems/move-zeroes/)
 ```Java
 public void moveZeroes(int[] nums) {
+	int slow = 0, fast = 0;
 
+	while(fast < nums.length){
+		if(nums[fast] != 0){
+			nums[slow] = nums[fast];
+			slow++;
+		}
+		fast++;
+	}
+
+	for(int i = slow; i < nums.length; i++){ 
+		nums[i] = 0; // 把剩下的内容都变成0
+	}
 }
 ```
 
