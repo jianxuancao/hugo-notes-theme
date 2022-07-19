@@ -12,6 +12,7 @@ toc: false
 ---
 
 [**有序数组去重**](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
+快慢指针
 ```Java
 public int removeDuplicates(int[] nums) {
 	int slow = 0, fast = 0;
@@ -29,6 +30,7 @@ public int removeDuplicates(int[] nums) {
 
 
 [**移除元素**](https://leetcode.cn/problems/remove-element/)
+快慢指针
 ```Java
 public int removeElement(int[] nums, int val) {
 	int slow = 0, fast = 0;
@@ -46,6 +48,7 @@ public int removeElement(int[] nums, int val) {
 
 
 [**移动0到末尾**](https://leetcode.cn/problems/move-zeroes/)
+快慢指针
 ```Java
 public void moveZeroes(int[] nums) {
 	int slow = 0, fast = 0;
