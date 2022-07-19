@@ -119,15 +119,43 @@ public void reverseString(char[] s) {
 ```
 
 
-[****]()
+[**回文串判断**]()
 ```Java
-
+boolean isPalindrome(String s) {
+    int left = 0, right = s.length() - 1;
+    while (left < right) {
+        if (s.charAt(left) != s.charAt(right)) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
+}
 ```
 
 
-[****]()
+[**最长回文子串**](https://leetcode.cn/problems/longest-palindromic-substring/)
+向两边展开是合理的思路
 ```Java
-
+public String longestPalindrome(String s) {
+	String res = "";
+    for (int i = 0; i < s.length(); i++) {
+        String s1 = palindrome(s, i, i); //以s[i]为中心的最长回文子串
+        String s2 = palindrome(s, i, i + 1); //s[i+1]为中心的最长回文子串
+        //找出以s[i]和s[i+1]为中心最长的一个
+        res = res.length() > s1.length() ? res : s1;
+        res = res.length() > s2.length() ? res : s2;
+    }
+    return res;
+}
+String palindrome(String s, int l, int r) {
+	while(l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)){
+		l--;
+		r++;
+	}
+	return s.substring(l + 1, r);
+}
 ```
 
 
