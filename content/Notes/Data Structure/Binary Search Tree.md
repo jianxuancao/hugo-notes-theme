@@ -160,3 +160,65 @@ TreeNode getMin(TreeNode node) {
     return node;
 }
 ```
+
+
+[**穷举可能性的数量**](https://leetcode.cn/problems/unique-binary-search-trees/)
+```Java
+int[][] possibility;
+int numTrees(int n) {
+    return count(1, n);
+}
+
+int count(int lo, int hi) {  // [lo, hi]区间的BST个数
+    if(lo > hi){  //base case
+        return 1;
+    }
+
+    if(memo[lo][hi] != 0){
+        reutrn memo[lo][hi]; // 已经存在，不计算直接返回
+    }
+
+    int result = 0;
+    for (int i = lo; i <= hi; i++) { // 用每一个值做为root
+        int left = count(lo, i-1);
+        int right = count(i+1, hi);
+        result += right*left;//左边的可能性x右边的可能性就是以i为root的全部可能性
+    }
+    memo[lo][hi] = res;
+    return result;
+}
+```
+
+
+[**穷举可能性**](https://leetcode.cn/problems/unique-binary-search-trees-ii/)
+```Java
+List<TreeNode> generateTrees(int n){
+    return build(1, n);
+}
+List<TreeNode> build(int lo, int hi){
+    List<TreeNode> result = new LinkedList<>();
+    
+    if (lo > hi) { // base case
+        result.add(null);
+        return result;
+    }
+
+    for (int i = lo; i <= hi; i++) { // 用每一个值做为root
+        //建立左右子树的所有可能的BST。
+        List<TreeNode> left = count(lo, i-1);
+        List<TreeNode>  right = count(i+1, hi);
+
+        //遍历每一种左右子树的组合，添加到一个列表里，这个列表会被返回到上一次递归让他再加上自己的root，变成上上个的左右子树
+        //这里的拼接只限于两层，root层和左右子树的那一层
+        for (TreeNode left : leftTree) {
+            for (TreeNode right : rightTree) {
+                TreeNode root = new TreeNode(i); // i作为root
+                root.left = left;
+                root.right = right;
+                res.add(root);
+            }
+        }
+    }
+    return result;
+}
+```
