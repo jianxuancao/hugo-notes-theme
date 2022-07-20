@@ -159,13 +159,26 @@ String palindrome(String s, int l, int r) {
 ```
 
 
-[****]()
+[**滑动窗口算法框架**]()
 ```Java
+void slidingWindow(string s) {
+    unordered_map<Character, Integer> window;
+    
+    int left = 0, right = 0;
+    while (right < s.size()) {
+        char c = s[right];// c 是将移入窗口的字符
+        right++;// 增大窗口
 
-```
+        ...// 进行窗口内数据的一系列更新
 
+        printf("window: [%d, %d]\n", left, right); //debug 输出的位置
+        
+        while (window needs shrink) { // 判断左侧窗口是否要收缩
+            char d = s[left];// d 是将移出窗口的字符
+            left++;// 缩小窗口
 
-[****]()
-```Java
-
+            ...// 进行窗口内数据的一系列更新  
+        }
+    }
+}
 ```
