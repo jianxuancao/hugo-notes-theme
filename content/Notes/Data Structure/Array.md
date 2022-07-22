@@ -161,8 +161,8 @@ String palindrome(String s, int l, int r) {
 
 [**滑动窗口算法框架**]()
 ```Java
-void slidingWindow(string s) {
-    unordered_map<Character, Integer> window;
+void slidingWindow(String s) {
+    HashMap<Character, Integer> window;
     
     int left = 0, right = 0;
     while (right < s.size()) {
@@ -171,9 +171,9 @@ void slidingWindow(string s) {
 
         ...// 进行窗口内数据的一系列更新
 
-        printf("window: [%d, %d]\n", left, right); //debug 输出的位置
+        System.out.print("window: [%d, %d]\n", left, right); //debug 输出的位置
         
-        while (window needs shrink) { // 判断左侧窗口是否要收缩
+        while () { // 判断左侧窗口是否要收缩
             char d = s[left];// d 是将移出窗口的字符
             left++;// 缩小窗口
 
@@ -181,4 +181,101 @@ void slidingWindow(string s) {
         }
     }
 }
+```
+
+[**最小覆盖子串**](https://leetcode.cn/problems/minimum-window-substring/)
+```Java
+public String minWindow(String s, String t) {
+    HashMap<Character, Integer> window= new HashMap<>();
+    HashMap<Character, Integer> need= new HashMap<>(); 
+    // store target, <char, num of occrance of that char>
+    for (int i = 0; i < t.length(); i++) {
+        char c = t.charAt(i);
+        need.put(c, need.getOrDefault(c, 0) + 1);
+    }
+
+    int left = 0, right = 0;
+    int valid = 0; // 合规字符数量
+    int ansL = 0, min = Integer.MAX_VALUE;
+    while (right < s.length()) {
+        char c = s.charAt(right);
+        right++;
+        
+        if (need.containsKey(c)) { // 进行窗口内数据的一系列更新
+            window.put(c, window.getOrDefault(c, 0) + 1); // 滑动窗口更新
+            if (window.get(c) == need.get(c)){ //字符对应上了就加一个
+                valid++; 
+            }
+        }
+
+        while (valid == need.size()) { // 如果全部t都包含了(valid等于size)，开始缩小窗口
+            if (right - left < min) { // 如果有更小的，更新指针
+                ansL = left;
+                min = right - left;
+            }
+            left++;
+            
+            if (need.containsKey(s.charAt(left))) { 
+                if (window.get(s.charAt(left)) == need.get(s.charAt(left))){
+                    valid--;
+                }
+                window.put(s.charAt(left), window.get(s.charAt(left)) - 1);
+            }                    
+        }
+    }
+
+    return min == Integer.MAX_VALUE ? "" : s.substring(ansL, ansL + min);
+}
+
+
+```
+
+
+[**字符串的排列**](https://leetcode.cn/problems/permutation-in-string/)
+```Java
+public boolean checkInclusion(String s, String s1) {
+    HashMap<Character, Integer> window= new HashMap<>();
+    HashMap<Character, Integer> need= new HashMap<>(); 
+    // store target, <char, num of occrance of that char>
+    for (int i = 0; i < s1.length(); i++) {
+        char c = s1.charAt(i);
+        need.put(c, need.getOrDefault(c, 0) + 1);
+    }
+
+    int left = 0, right = 0;
+    int valid = 0; // 合规字符数量
+    int ansL = 0, min = Integer.MAX_VALUE;
+    while (right < s.length()) {
+        char c = s.charAt(right);
+        right++;
+
+        // 计算window现在有几个符合条件的char
+        //因为每次只添加一个char，比较一次就行
+        if (need.containsKey(c)) { //如果是需要的，加入window里
+            window.put(c, window.getOrDefault(s.charAt(right), 0) + 1); 
+            // 滑动窗口更新
+            if (window.get(c).equals(need.get(c)){ // 同样字符出现次数也是考虑标准
+                valid += window.get(c); //字符和出现次数对应上了就加一个
+            }
+        }
+
+        while (right - left >= s1.length()) { // 如果全部t都包含了(valid等于size)，开始缩小窗口
+            if (valid == need.size()) { // 如果有更小的，更新指针
+                return true;
+            }
+            left++;
+            
+            if (need.containsKey(s.charAt(left))) { 
+                if (window.get(s.charAt(left)) == need.get(s.charAt(left))){
+                    valid--;
+                }
+                window.put(s.charAt(left), window.get(s.charAt(left)) - 1);
+            }                    
+        }
+    }
+
+    return false;
+}
+
+
 ```

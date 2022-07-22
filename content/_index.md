@@ -22,7 +22,7 @@ toc: false
 
 ## 项目经历
 
-[**Visual Studio 可视化编程插件**](https://marketplace.visualstudio.com/items?itemName=VisualThreadingAccessibleDragandDropcoding.VisualThreading) | 研究生在校实习生
+[**Visual Studio 可视化编程插件**]() | 研究生在校实习生
 
 目前仍在开发过程中，根据来自微软和英特尔项目主管人员的项目目标开发，主要负责Windows WPF前端组件的动态生成与设计，为辅助残障儿童开发可视化编程工具。
 
