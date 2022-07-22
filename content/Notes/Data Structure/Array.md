@@ -17,30 +17,14 @@ public int removeDuplicates(int[] nums) {
 	int slow = 0, fast = 0;
 
 	while(fast < nums.length){
-		if(nums[slow] != nums[fast]){
+		if(nums[slow] != nums[fast]){  
+        //如果想移除特定元素if(nums[fast] != val){ 
 			slow++;
 			nums[slow] = nums[fast];
 		}
 		fast++;
 	}
 	return slow+1;
-}
-```
-
-
-[**移除元素**](https://leetcode.cn/problems/remove-element/)
-```Java
-public int removeElement(int[] nums, int val) {
-	int slow = 0, fast = 0;
-
-	while(fast < nums.length){
-		if(nums[fast] != val){
-			nums[slow] = nums[fast];
-			slow++;
-		}
-		fast++;
-	}
-	return slow;
 }
 ```
 
@@ -120,6 +104,7 @@ public void reverseString(char[] s) {
 
 
 [**回文串判断**]()
+从中心向两端扩散
 ```Java
 boolean isPalindrome(String s) {
     int left = 0, right = s.length() - 1;
@@ -175,7 +160,7 @@ void slidingWindow(String s) {
         
         while () { // 判断左侧窗口是否要收缩
             char d = s[left];// d 是将移出窗口的字符
-            left++;// 缩小窗口
+            left++; // 缩小窗口
 
             ...// 进行窗口内数据的一系列更新  
         }
@@ -209,17 +194,18 @@ public String minWindow(String s, String t) {
         }
 
         while (valid == need.size()) { // 如果全部t都包含了(valid等于size)，开始缩小窗口
-            if (right - left < min) { // 如果有更小的，更新指针
+            if (right - left < min) { // 如果有更小的，更新min
                 ansL = left;
                 min = right - left;
             }
-            left++;
-            
-            if (need.containsKey(s.charAt(left))) { 
-                if (window.get(s.charAt(left)) == need.get(s.charAt(left))){
-                    valid--;
+
+            char d = s.charAt(left);
+            left++; // 缩小窗口
+            if (need.containsKey(d)) { //如果删去的左边是需要的
+                if (window.get(d) == need.get(d)){ // 
+                    valid--; //目前窗口不满足最小覆盖，循环结束
                 }
-                window.put(s.charAt(left), window.get(s.charAt(left)) - 1);
+                window.put(d, window.get(d) - 1);
             }                    
         }
     }
@@ -233,18 +219,18 @@ public String minWindow(String s, String t) {
 
 [**字符串的排列**](https://leetcode.cn/problems/permutation-in-string/)
 ```Java
-public boolean checkInclusion(String s, String s1) {
-    HashMap<Character, Integer> window= new HashMap<>();
-    HashMap<Character, Integer> need= new HashMap<>(); 
+public boolean checkInclusion(String t, String s) {
+    HashMap<Character, Integer> window = new HashMap<>();
+    HashMap<Character, Integer> need = new HashMap<>(); 
     // store target, <char, num of occrance of that char>
-    for (int i = 0; i < s1.length(); i++) {
-        char c = s1.charAt(i);
+    for (int i = 0; i < t.length(); i++) {
+        char c = t.charAt(i);
         need.put(c, need.getOrDefault(c, 0) + 1);
     }
 
     int left = 0, right = 0;
     int valid = 0; // 合规字符数量
-    int ansL = 0, min = Integer.MAX_VALUE;
+    int ansL = 0;
     while (right < s.length()) {
         char c = s.charAt(right);
         right++;
@@ -252,30 +238,29 @@ public boolean checkInclusion(String s, String s1) {
         // 计算window现在有几个符合条件的char
         //因为每次只添加一个char，比较一次就行
         if (need.containsKey(c)) { //如果是需要的，加入window里
-            window.put(c, window.getOrDefault(s.charAt(right), 0) + 1); 
+            window.put(c, window.getOrDefault(c, 0) + 1); 
             // 滑动窗口更新
-            if (window.get(c).equals(need.get(c)){ // 同样字符出现次数也是考虑标准
-                valid += window.get(c); //字符和出现次数对应上了就加一个
+            if (window.get(c).equals(need.get(c))){ // 同样字符出现次数也是考虑标准
+                valid++; //字符和出现次数对应上了就加一个
             }
         }
 
-        while (right - left >= s1.length()) { // 如果全部t都包含了(valid等于size)，开始缩小窗口
+        if (right - left >= t.length()) { // 如果全部t都包含了(valid等于size)，开始缩小窗口
             if (valid == need.size()) { // 如果有更小的，更新指针
                 return true;
             }
+            char d = s.charAt(left);
             left++;
             
-            if (need.containsKey(s.charAt(left))) { 
-                if (window.get(s.charAt(left)) == need.get(s.charAt(left))){
+            if (need.containsKey(d)) { 
+                if (window.get(d) == need.get(d)){
                     valid--;
                 }
-                window.put(s.charAt(left), window.get(s.charAt(left)) - 1);
+                window.put(d, window.get(d) - 1);
             }                    
         }
     }
 
     return false;
 }
-
-
 ```
