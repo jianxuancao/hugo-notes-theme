@@ -2,6 +2,7 @@
 # Title, summary, and page position.
 title: Data Structure
 linktitle: Data Structure
+summary: Notes on Data Structure.
 weight: 3
 
 # Page metadata.

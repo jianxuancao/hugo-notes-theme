@@ -264,3 +264,52 @@ public boolean checkInclusion(String t, String s) {
     return false;
 }
 ```
+
+
+[**找到所有字母排列**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
+```Java
+public List<Integer> findAnagrams(String s, String p) {
+    HashMap<Character, Integer> window = new HashMap<>();
+    HashMap<Character, Integer> need = new HashMap<>(); 
+    // store target, <char, num of occrance of that char>
+    for (int i = 0; i < p.length(); i++) {
+        char c = p.charAt(i);
+        need.put(c, need.getOrDefault(c, 0) + 1);
+    }
+
+    int left = 0, right = 0;
+    int valid = 0; // 合规字符数量
+    List<Integer> ans = new ArrayList<Integer>();
+    while (right < s.length()) {
+        char c = s.charAt(right);
+        right++;
+
+        // 计算window现在有几个符合条件的char
+        //因为每次只添加一个char，比较一次就行
+        if (need.containsKey(c)) { //如果是需要的，加入window里
+            window.put(c, window.getOrDefault(c, 0) + 1); 
+            // 滑动窗口更新
+            if (window.get(c).equals(need.get(c))){ // 同样字符出现次数也是考虑标准
+                valid++; //字符和出现次数对应上了就加一个
+            }
+        }
+
+        if (right - left >= p.length()) { // 如果全部t都包含了(valid等于size)，开始缩小窗口
+            if (valid == need.size()) { // 如果有更小的，更新指针
+                ans.add(left); //保存指针
+            }
+            char d = s.charAt(left);
+            left++;
+            
+            if (need.containsKey(d)) { 
+                if (window.get(d) == need.get(d)){
+                    valid--;
+                }
+                window.put(d, window.get(d) - 1);
+            }                    
+        }
+    }
+
+    return ans;
+}
+```
