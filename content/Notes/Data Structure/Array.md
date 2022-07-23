@@ -433,7 +433,7 @@ public int search(int[] nums, int target) {
 ```
 
 
-[**右侧边界**]()
+[**左侧边界**]()
 ```Java
 int left_bound(int[] nums, int target) {
     // 搜索区间为 [left, right]
@@ -460,7 +460,7 @@ int left_bound(int[] nums, int target) {
 ```
 
 
-[**左侧边界**]()
+[**右侧边界**]()
 ```Java
 int right_bound(int[] nums, int target) {
     int left = 0, right = nums.length - 1;
@@ -482,7 +482,85 @@ int right_bound(int[] nums, int target) {
 ```
 
 
-[****]()
+[**按权重随机选择**](https://leetcode.cn/problems/random-pick-with-weight/submissions/)
 ```Java
+class Solution {
+    private int[] preSum;
+    private Random rand = new Random();
+    
+    public Solution(int[] w) {
+        int n = w.length;
+        // 构建前缀和数组，偏移一位留给 preSum[0]
+        preSum = new int[n + 1];
+        preSum[0] = 0;
+        // preSum[i] = sum(w[0..i-1])
+        for (int i = 1; i <= n; i++) {
+            preSum[i] = preSum[i - 1] + w[i - 1];
+        }
+    }
+    
+    public int pickIndex() {
+        int n = preSum.length;
+        // 在[0, preSum[n - 1](exclusive)] 中随机选择一个数字, +1恢复为[1, preSum[n - 1]]
+        int target = rand.nextInt(preSum[n - 1]) + 1;
+        // 获取 target 在前缀和数组 preSum 中的索引
+        // 别忘了前缀和数组 preSum 和原始数组 w 有一位索引偏移
+        return left_bound(preSum, target) - 1;
+    }
 
+    int left_bound(int[] nums, int target) {
+        if (nums.length == 0) return -1;
+        int left = 0, right = nums.length;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target) {
+                right = mid;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else if (nums[mid] > target) {
+                right = mid;
+            }
+        }
+        return left;
+    }
+}
+```
+
+
+[**田忌赛马**]()
+```Java
+int[] advantageCount(int[] nums1, int[] nums2) {
+    int n = nums1.length;
+    // 给 nums2 降序排序
+    PriorityQueue<int[]> maxpq = new PriorityQueue<>(
+        (int[] pair1, int[] pair2) -> { 
+            return pair2[1] - pair1[1];
+        }
+    );
+    for (int i = 0; i < n; i++) {
+        maxpq.offer(new int[]{i, nums2[i]});
+    }
+    // 给 nums1 升序排序
+    Arrays.sort(nums1);
+
+    // nums1[left] 是最小值，nums1[right] 是最大值
+    int left = 0, right = n - 1;
+    int[] res = new int[n];
+
+    while (!maxpq.isEmpty()) {
+        int[] pair = maxpq.poll();
+        // maxval 是 nums2 中的最大值，i 是对应索引
+        int i = pair[0], maxval = pair[1];
+        if (maxval < nums1[right]) {
+            // 如果 nums1[right] 能胜过 maxval，那就自己上
+            res[i] = nums1[right];
+            right--;
+        } else {
+            // 否则用最小值混一下，养精蓄锐
+            res[i] = nums1[left];
+            left++;
+        }
+    }
+    return res;
+}
 ```
