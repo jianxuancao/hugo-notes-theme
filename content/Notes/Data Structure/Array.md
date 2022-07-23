@@ -313,3 +313,176 @@ public List<Integer> findAnagrams(String s, String p) {
     return ans;
 }
 ```
+
+
+[**字符串的排列**](https://leetcode.cn/problems/permutation-in-string/)
+```Java
+public boolean checkInclusion(String t, String s) {
+    HashMap<Character, Integer> window = new HashMap<>();
+    HashMap<Character, Integer> need = new HashMap<>(); 
+    // store target, <char, num of occrance of that char>
+    for (int i = 0; i < t.length(); i++) {
+        char c = t.charAt(i);
+        need.put(c, need.getOrDefault(c, 0) + 1);
+    }
+
+    int left = 0, right = 0;
+    int valid = 0; // 合规字符数量
+    int ansL = 0;
+    while (right < s.length()) {
+        char c = s.charAt(right);
+        right++;
+
+        // 计算window现在有几个符合条件的char
+        //因为每次只添加一个char，比较一次就行
+        if (need.containsKey(c)) { //如果是需要的，加入window里
+            window.put(c, window.getOrDefault(c, 0) + 1); 
+            // 滑动窗口更新
+            if (window.get(c).equals(need.get(c))){ // 同样字符出现次数也是考虑标准
+                valid++; //字符和出现次数对应上了就加一个
+            }
+        }
+
+        if (right - left >= t.length()) { // 如果全部t都包含了(valid等于size)，开始缩小窗口
+            if (valid == need.size()) { // 如果有更小的，更新指针
+                return true;
+            }
+            char d = s.charAt(left);
+            left++;
+            
+            if (need.containsKey(d)) { 
+                if (window.get(d) == need.get(d)){
+                    valid--;
+                }
+                window.put(d, window.get(d) - 1);
+            }                    
+        }
+    }
+
+    return false;
+}
+```
+
+
+[**找到所有字母排列**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
+```Java
+public int lengthOfLongestSubstring(String s) {
+    HashSet<Character> window = new HashSet<>();
+    int left = 0, right = 0;
+    int result = 0;
+    while (right < s.length()) {
+        char c = s.charAt(right);
+        right++;
+       
+        if (window.contains(c)) { //如果重复出现,收紧左侧指针
+            left++;//左进一
+        }else{
+            window.add(c); //加入window
+        }
+
+        result = Math.max(result, right - left);
+    }
+
+    return result;
+}
+```
+
+
+[**最长无重复子串**](https://leetcode.cn/problems/longest-substring-without-repeating-characters/submissions/)
+```Java
+public int lengthOfLongestSubstring(String s) {
+    HashSet<Character> window = new HashSet<>();
+    int left = 0, right = 0;
+    int result = 0;
+    while (right < s.length()) {
+        char c = s.charAt(right);
+        right++;
+    
+        while (window.contains(c)) { //如果重复出现,收紧左侧指针
+            window.remove(s.charAt(left));
+            left++;//左进一
+        }
+        window.add(c);
+        System.out.println(window + " " + left + " " + right);
+        result = Math.max(result, right - left);
+    }
+
+    return result;
+}
+```
+
+
+[**二分查找**](https://leetcode.cn/problems/binary-search/)
+```Java
+public int search(int[] nums, int target) {
+    int left = 0 ;
+    int right = nums.length - 1;
+
+    while (right >= left){
+        int mid = left + (right - left) / 2;
+        if(nums[mid] == target){
+            return mid;
+        }else if(nums[mid] > target){
+            right = mid - 1;
+        }else if(nums[mid] < target){
+            left = mid + 1;
+        }
+    }
+    return -1;
+}
+```
+
+
+[**右侧边界**]()
+```Java
+int left_bound(int[] nums, int target) {
+    // 搜索区间为 [left, right]
+    int left = 0, right = nums.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] < target) {
+            // 搜索区间变为 [mid+1, right]
+            left = mid + 1;
+        } else if (nums[mid] > target) {
+            // 搜索区间变为 [left, mid-1]
+            right = mid - 1;
+        } else if (nums[mid] == target) {
+            // 收缩右侧边界
+            right = mid - 1;
+        }
+    }
+    // 判断 target 是否存在于 nums 中
+    // 此时 target 比所有数都大，返回 -1
+    if (left == nums.length) return -1;
+    // 判断一下 nums[left] 是不是 target
+    return nums[left] == target ? left : -1;
+}
+```
+
+
+[**左侧边界**]()
+```Java
+int right_bound(int[] nums, int target) {
+    int left = 0, right = nums.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] < target) {
+            left = mid + 1;
+        } else if (nums[mid] > target) {
+            right = mid - 1;
+        } else if (nums[mid] == target) {
+            // 这里改成收缩左侧边界即可
+            left = mid + 1;
+        }
+    }
+    // 最后改成返回 left - 1
+    if (left - 1 < 0) return -1;
+    return nums[left - 1] == target ? (left - 1) : -1;
+}
+```
+
+
+[****]()
+```Java
+
+```
