@@ -1,6 +1,6 @@
 ---
 # Title, summary, and page position.
-title: LinkedList
+title: Binary Search Tree
 linktitle: Binary Search Tree
 summary: Notes on data structures.
 weight: 2

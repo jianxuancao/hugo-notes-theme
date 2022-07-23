@@ -1,6 +1,6 @@
 ---
 # Title, summary, and page position.
-title: LinkedList
+title: Array
 linktitle: Array
 summary: Notes on data structures.
 weight: 2
