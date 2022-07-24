@@ -72,3 +72,51 @@ public int fib(int n) {
 ```
 
 
+[**凑零钱（从大往小）**](https://leetcode.cn/problems/coin-change/)
+使用memo，空间换时间
+```Java
+int[] memo;
+
+int coinChange(int[] coins, int amount) {
+    memo = new int[amount + 1];
+    Arrays.fill(memo, -666);// 备忘录初始化为一个不会被取到的特殊值，代表还未被计算
+    return dp(coins, amount);
+}
+
+int dp(int[] coins, int amount) {
+    if (amount == 0) return 0;
+    if (amount < 0) return -1;
+ 
+    if (memo[amount] != -666)   // 查备忘录
+        return memo[amount];
+
+    int res = Integer.MAX_VALUE;
+    for (int coin : coins) {
+        int subProblem = dp(coins, amount - coin); // 计算子问题
+        if (subProblem == -1) continue; // 无解
+        res = Math.min(res, subProblem + 1); // 选择最优解，+1是因为当前这个foreach的coin也要算一个位置的
+    }
+    memo[amount] = (res == Integer.MAX_VALUE) ? -1 : res; // 计算结果存入memo
+    return memo[amount];
+}
+```
+
+
+[**凑零钱（dp数组迭代方式，从前往后）**](https://leetcode.cn/problems/coin-change/)
+使用memo，空间换时间
+```Java
+int coinChange(int[] coins, int amount) {
+    int[] dp = new int[amount + 1]; // dp中i块钱的时候需要几个硬币
+    Arrays.fill(dp, amount + 1);
+    dp[0] = 0; // base case
+   
+    for (int i = 0; i < dp.length; i++) { //循环在遍历所有状态的所有取值
+        for (int coin : coins) { //循环尝试所有选择
+            if (i - coin < 0) continue; //无解，跳过
+            dp[i] = Math.min(dp[i], 1 + dp[i - coin]);//取最小值（最少的硬币数量）
+            //i是几块钱，i-coin是查看使用了一个面值的硬币后，从前面查看剩下的面值最小需要几个硬币
+        }
+    }
+    return (dp[amount] == amount + 1) ? -1 : dp[amount];
+}
+```
