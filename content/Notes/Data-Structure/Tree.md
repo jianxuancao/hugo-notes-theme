@@ -11,6 +11,8 @@ type: book # Do not modify.
 toc: false
 
 ---
+这里是深度优先遍历，[广度优先遍历看这个Note]({{<relref "../Other-Algorithum/BFS.md">}})
+
 
 * 一棵二叉树的前序遍历结果 = 根节点 + 左子树的前序遍历结果 + 右子树的前序遍历结果
 
