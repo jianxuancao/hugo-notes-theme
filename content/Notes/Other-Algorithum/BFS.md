@@ -1,8 +1,8 @@
 ---
 # Title, summary, and page position.
-title: BFS, DFS
-linktitle: BFS, DFS
-summary: Notes on BFS and DFS.
+title: BFS
+linktitle: BFS
+summary: Notes on BFS.
 weight: 2
 
 # Page metadata.
