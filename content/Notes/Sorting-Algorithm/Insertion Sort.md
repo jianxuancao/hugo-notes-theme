@@ -1,8 +1,8 @@
 ---
 # Title, summary, and page position.
 title: Insertion Sort
-linktitle: Notes on Insertion Sort
-summary:
+linktitle: Insertion Sort
+summary: Notes on Insertion Sort
 weight: 2
 
 # Page metadata.
