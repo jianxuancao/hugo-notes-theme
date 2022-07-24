@@ -1,7 +1,7 @@
 ---
 # Title, summary, and page position.
 title: Insertion Sort
-linktitle: Insertion Sort
+linktitle: Notes on Insertion Sort
 summary:
 weight: 2
 

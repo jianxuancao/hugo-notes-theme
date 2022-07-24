@@ -2,7 +2,7 @@
 # Title, summary, and page position.
 title: Quick sort
 linktitle: Quick sort
-summary:
+summary: Notes on Quick sort
 weight: 2
 
 # Page metadata.

@@ -1,7 +1,7 @@
 ---
 # Title, summary, and page position.
 title: Merge Sort
-linktitle: Merge Sort
+linktitle: Notes on Merge Sort
 summary:
 weight: 2
 

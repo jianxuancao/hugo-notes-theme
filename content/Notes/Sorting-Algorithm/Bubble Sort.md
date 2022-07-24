@@ -2,7 +2,7 @@
 # Title, summary, and page position.
 title: Bubble sort
 linktitle: Bubble sort
-summary:
+summary: Notes on Bubble sort
 weight: 2
 
 # Page metadata.

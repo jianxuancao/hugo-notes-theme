@@ -2,7 +2,7 @@
 # Title, summary, and page position.
 title: Selection Sort
 linktitle: Selection Sort
-summary:
+summary: Notes on Selection Sort
 weight: 2
 
 # Page metadata.
