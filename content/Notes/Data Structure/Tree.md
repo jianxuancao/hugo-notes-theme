@@ -23,7 +23,6 @@ toc: false
 2. 递归： 利用这个函数的返回值，分解问题
 
 [**Max Depth of Tree**](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
-
 ```Java
 int depth = 0;
 int maxD = 0;

@@ -10,6 +10,7 @@ date: '2018-09-09T00:00:00Z'
 type: book # Do not modify.
 toc: false
 ---
+[DFS其实就是前中后序递归]({{<relref "/hugo-notes-theme/content/Data Structure/Tree.md">}})
 BFS空间复杂度高，DFS空间复杂度较低。
 
 [**BFS(计算最小深度)**](https://leetcode.cn/problems/minimum-depth-of-binary-tree/)
@@ -100,32 +101,11 @@ int openLock(String[] deadends, String target) {
 [**带禁止组合的开锁问题（双向BFS）**](https://leetcode.cn/problems/open-the-lock/)
 从底部和root同时扩散，找出相遇时间，最坏的情况下与正常BFS一样，但是大多数时候更快
 ```Java
-String plusOne(String s, int j) {
-    char[] ch = s.toCharArray();
-    if (ch[j] == '9')
-        ch[j] = '0';
-    else
-        ch[j] += 1;
-    return new String(ch);
-}
-// 将 s[i] 向下拨动一次
-String minusOne(String s, int j) {
-    char[] ch = s.toCharArray();
-    if (ch[j] == '0')
-        ch[j] = '9';
-    else
-        ch[j] -= 1;
-    return new String(ch);
-}
-
-
 int openLock(String[] deadends, String target) {
     Set<String> deads = new HashSet<>();
     for (String s : deadends) deads.add(s);
     // 用集合不用队列，可以快速判断元素是否存在
-    Set<String> q1 = new HashSet<>();
-    Set<String> q2 = new HashSet<>();
-    Set<String> visited = new HashSet<>();
+    Set<String> q1 = new HashSet<>(), q2 = new HashSet<>(), visited = new HashSet<>();
     
     int step = 0;
     q1.add("0000");
@@ -140,7 +120,7 @@ int openLock(String[] deadends, String target) {
             if (q2.contains(cur)) return step;/* 判断是否到达终点 */
 
             visited.add(cur);
-            
+
             for (int j = 0; j < 4; j++) {/* 每一次都可能是在一位数上+或者-，所以每一个情况都有8个子情况 */
                 String up = plusOne(cur, j);
                 if (!visited.contains(up))
@@ -159,3 +139,4 @@ int openLock(String[] deadends, String target) {
     return -1;
 }
 ```
+
