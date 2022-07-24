@@ -10,7 +10,7 @@ date: '2018-09-09T00:00:00Z'
 type: book # Do not modify.
 toc: false
 ---
-[DFS其实就是前中后序递归]({{<relref "../_index.md">}})
+[DFS其实就是前中后序递归]({{<relref "../Data-Struture/Tree.md">}})
 BFS空间复杂度高，DFS空间复杂度较低。
 
 [**BFS(计算最小深度)**](https://leetcode.cn/problems/minimum-depth-of-binary-tree/)
