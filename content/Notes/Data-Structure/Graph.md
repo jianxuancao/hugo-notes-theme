@@ -36,7 +36,7 @@ toc: false
 > int[][] matrix, [x][y] 记录 x 指向 y 的边的权重，0 表示不相邻
 > 对于一个link，[x][y]，[y][x]需要同时赋值，写成双向接通
 
-[**图的遍历**]()
+[**节点0到节点n-1的所有可能路径**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 ```Java
 List<List<Integer>> res = new LinkedList<>();// 记录所有路径
     
@@ -51,11 +51,9 @@ void traverse(int[][] graph, int s, LinkedList<Integer> path) {/* 图的遍历�
 
     int n = graph.length;
     if (s == n - 1) {// 到达终点
-        res.add(new LinkedList<>(path));
-        // 可以在这直接 return，但要 removeLast 正确维护 path
-        // path.removeLast();
-        // return;
-        // 不 return 也可以，因为图中不包含环，不会出现无限递归
+        res.add(new LinkedList<>(path)); //一条路径完成，添加至result
+        path.removeLast();//由于一条路径完成，path需要清除这最后一步，为上一个节点的别的可能出路做好准备
+        return;
     }
 
     for (int v : graph[s]) {// 递归每个相邻节点
@@ -89,5 +87,48 @@ void traverse(int[][] graph, int s, LinkedList<Integer> path) {
         traverse(graph, v, path);
     }
     path.removeLast();
+}
+```
+
+
+[**环检测算法(课程表)(DFS)**](https://leetcode.cn/problems/course-schedule/)
+```Java
+class Solution {
+    boolean[] onPath;// 记录一次递归堆栈中的节点
+    boolean[] visited;// 记录遍历过的节点，防止走回头路
+    boolean hasCycle = false;// 记录图中是否有环
+
+    boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<Integer>[] graph = new LinkedList[numCourses];  //建立图的邻接表（一维：每一科）（二维：每一科的前置要求）
+        for (int i = 0; i < numCourses; i++) {
+            graph[i] = new LinkedList<>();
+        }
+        for (int[] edge : prerequisites) {
+            graph[edge[1]].add(edge[0]); // 修完课程 from 才能修课程 to
+        }
+        
+        visited = new boolean[numCourses];
+        onPath = new boolean[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            traverse(graph, i);
+        }
+        return !hasCycle;
+    }
+
+    void traverse(List<Integer>[] graph, int s) {
+        if (onPath[s]) { // 出现环
+            hasCycle = true;
+        }
+        if (visited[s] || hasCycle) {// 如果已经找到了环，也不用再遍历了    
+            return;
+        }
+        // 把当前判断的科目设为已经遍历的课
+        visited[s] = true;
+        onPath[s] = true;
+        for (int t : graph[s]) {
+            traverse(graph, t);
+        }
+        onPath[s] = false;
+    }
 }
 ```
