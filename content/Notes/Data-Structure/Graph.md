@@ -36,6 +36,25 @@ toc: false
 > int[][] matrix, [x][y] 记录 x 指向 y 的边的权重，0 表示不相邻
 > 对于一个link，[x][y]，[y][x]需要同时赋值，写成双向接通
 
+[**DFS遍历图**]()
+```Java
+boolean[] visited;// 记录被遍历过的节点
+boolean[] onPath;// 记录从起点到当前节点的路径
+
+void traverse(Graph graph, int s) { //s初始为0，代表起始节点
+    if (visited[s]) return;
+    
+    visited[s] = true;// 经过节点s，标记为已遍历
+    onPath[s] = true;// 做选择：标记节点 s 在路径上
+    for (int neighbor : graph.neighbors(s)) { //遍历每一个邻居
+        traverse(graph, neighbor);
+    }
+    onPath[s] = false;// 撤销选择：节点 s 离开路径
+}
+
+```
+
+
 [**节点0到节点n-1的所有可能路径**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 ```Java
 List<List<Integer>> res = new LinkedList<>();// 记录所有路径
@@ -100,6 +119,7 @@ class Solution {
 
     boolean canFinish(int numCourses, int[][] prerequisites) {
         List<Integer>[] graph = new LinkedList[numCourses];  //建立图的邻接表（一维：每一科）（二维：每一科的前置要求）
+        //如果有环证明出现了鸡生蛋，蛋生鸡的环
         for (int i = 0; i < numCourses; i++) {
             graph[i] = new LinkedList<>();
         }
@@ -130,5 +150,56 @@ class Solution {
         }
         onPath[s] = false;
     }
+}
+```
+
+
+[**输出依赖图（拓扑排序）**](https://leetcode.cn/problems/course-schedule-ii/)
+```Java
+List<Integer> postorder = new ArrayList<>();// 记录后序遍历结果
+boolean hasCycle = false;// 记录是否存在环
+boolean[] visited, onPath;
+
+public int[] findOrder(int numCourses, int[][] prerequisites) {
+    List<Integer>[] graph = new LinkedList[numCourses];  //建立图的邻接表（一维：每一科）（二维：每一科的前置要求）
+    //如果有环证明出现了鸡生蛋，蛋生鸡的环
+    for (int i = 0; i < numCourses; i++) {
+        graph[i] = new LinkedList<>();
+    }
+    for (int[] edge : prerequisites) {
+        graph[edge[1]].add(edge[0]); // 修完课程 from 才能修课程 to
+    }
+
+    visited = new boolean[numCourses];
+    onPath = new boolean[numCourses];
+    for (int i = 0; i < numCourses; i++) {
+        traverse(graph, i);
+    }
+    if (hasCycle) {// 有环图无法进行拓扑排序
+        return new int[]{};
+    }
+    
+    Collections.reverse(postorder);// 反转后序遍历结果即为拓扑排序结果
+    int[] res = new int[numCourses];
+    for (int i = 0; i < numCourses; i++) {
+        res[i] = postorder.get(i);
+    }
+    return res;
+}
+void traverse(List<Integer>[] graph, int s) {
+    if (onPath[s]) { // 出现环
+        hasCycle = true;
+    }
+    if (visited[s] || hasCycle) {// 如果已经找到了环，也不用再遍历了    
+        return;
+    }
+    // 把当前判断的科目设为已经遍历的课
+    visited[s] = true;
+    onPath[s] = true;
+    for (int t : graph[s]) {
+        traverse(graph, t);
+    }
+    postorder.add(s);
+    onPath[s] = false;
 }
 ```
