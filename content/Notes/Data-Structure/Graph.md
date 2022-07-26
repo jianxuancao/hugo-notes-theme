@@ -186,6 +186,7 @@ public int[] findOrder(int numCourses, int[][] prerequisites) {
     }
     return res;
 }
+
 void traverse(List<Integer>[] graph, int s) {
     if (onPath[s]) { // 出现环
         hasCycle = true;
@@ -199,7 +200,49 @@ void traverse(List<Integer>[] graph, int s) {
     for (int t : graph[s]) {
         traverse(graph, t);
     }
-    postorder.add(s);
+    postorder.add(s); //后续遍历是从终点开始返回的（left是头）
     onPath[s] = false;
+}
+```
+
+
+[**环检测算法（BFS 版本）**]()
+```Java
+public boolean canFinish(int numCourses, int[][] prerequisites) {
+    List<Integer>[] graph = new LinkedList[numCourses];  //建立图的邻接表（一维：每一科）（二维：每一科的前置要求）
+    for (int i = 0; i < numCourses; i++) {
+        graph[i] = new LinkedList<>();
+    }
+    for (int[] edge : prerequisites) {
+        graph[edge[1]].add(edge[0]); // 修完课程 from 才能修课程 to
+    }
+    int[] indegree = new int[numCourses];// 构建入度数组
+
+    for (int[] edge : prerequisites) { //给所有节点计算有几个入度
+        int from = edge[1], to = edge[0];
+        indegree[to]++;// 节点 to 的入度加一
+    }
+
+    Queue<Integer> q = new LinkedList<>(); // 根据入度初始化队列中的节点
+    for (int i = 0; i < numCourses; i++) {
+        if (indegree[i] == 0) {
+            q.offer(i);// 节点 i 没有入度，即没有依赖的节点root,作为拓扑排序的起点，加入队列
+        }
+    }
+
+    int count = 0; // 记录遍历的节点个数
+    while (!q.isEmpty()) {// BFS 循环
+        int cur = q.poll();
+        count++;
+        for (int next : graph[cur]) { //当前节点的每一个可能的出路
+            indegree[next]--; // 进入一个节点，把他的入度减一
+            if (indegree[next] == 0) {
+                // 如果入度变为 0，说明 next 依赖的节点都已被遍历
+                // 代表可以进入下一个深度了
+                q.offer(next);
+            }
+        }
+    }
+    return count == numCourses;// 如果所有节点都被遍历过，说明不成环
 }
 ```
