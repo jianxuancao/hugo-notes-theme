@@ -329,3 +329,53 @@ public int[] findOrder(int numCourses, int[][] prerequisites) {
     return res;
 }
 ```
+
+
+[**判断二分图DFS**](https://leetcode.cn/problems/is-graph-bipartite/)
+```Java
+boolean ok = true;
+boolean[] color;
+boolean[] visited;
+
+public boolean isBipartite(int[][] graph) {
+    color =  new boolean[n];
+    visited =  new boolean[n];
+
+    for (int node = 0; node < graph.length; node++) {
+        if (!visited[node]) {
+            traverse(graph, node);
+        }
+    }
+    return ok;
+}
+
+private void traverse(int[][] graph, int node) {
+    if (!ok) return;// 不是二分图
+
+    visited[node] = true;
+    for (int neighbor : graph[node]) {
+        if (!visited[neighbor]) {                   // neighbor没有被访问过
+            color[neighbor] = !color[node];         //那么给neighbor和node不同的颜色
+            traverse(graph, neighbor);              //继续遍历每一个neighbor
+        } 
+        else {                                      //neighbor已经被访问过
+            if (color[neighbor] == color[node]) {   //若颜色相同，则不是二分图
+                ok = false;
+                return;
+            }
+        }
+    }
+}
+```
+
+
+[****](https://leetcode.cn/problems/possible-bipartition/)
+```Java
+
+```
+
+
+[****]()
+```Java
+
+```
