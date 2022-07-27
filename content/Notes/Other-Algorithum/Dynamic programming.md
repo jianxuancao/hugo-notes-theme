@@ -141,3 +141,65 @@ int lengthOfLIS(int[] nums) {
     return res;
 }
 ```
+
+
+[**俄罗斯套娃信封问题**](https://leetcode.cn/problems/russian-doll-envelopes/)
+跟最长递增子序列相似，首先，我们对宽边排序，这样保证后面的起码能塞进前一个的宽边（其实替换成高也行），然后就跟上一题一模一样了
+```Java
+public int maxEnvelopes(int[][] envelopes) { // envelopes = [[w, h], [w, h]...]
+    int n = envelopes.length; 
+
+    Arrays.sort(envelopes, new Comparator<int[]>() // 按宽度升序排列，如果宽度一样，则按高度降序排列
+    {
+        public int compare(int[] a, int[] b) {
+            return a[0] == b[0] ? 
+                b[1] - a[1] : a[0] - b[0];
+        }
+    });
+    
+    int[] height = new int[n]; // 提取高度
+    for (int i = 0; i < n; i++)
+        height[i] = envelopes[i][1];
+
+    return lengthOfLIS(height); 对高度数组寻找 LIS
+}
+
+int lengthOfLIS(int[] nums) {
+    // 见前文
+}
+
+```
+
+
+[**最小编辑距离**](https://www.bilibili.com/video/BV1uv411W73P/?vd_source=da38e0269fa2d809bfcc81efe811eed9)
+```Java
+int minDistance(String s1, String s2) {
+    int m = s1.length(), n = s2.length(); 
+    int[][] dp = new int[m + 1][n + 1]; //s1[0..i] 和 s2[0..j] 的最小编辑距离是 dp[i+1][j+1]
+    
+    // base case 
+    for (int i = 1; i <= m; i++)
+        dp[i][0] = i;
+    for (int j = 1; j <= n; j++)
+        dp[0][j] = j;
+    
+    for (int i = 1; i <= m; i++) { // 自底向上求解（从短到长）
+        for (int j = 1; j <= n; j++) {
+            if (s1.charAt(i-1) == s2.charAt(j-1)) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else {
+                dp[i][j] = min(
+                    dp[i - 1][j] + 1, // 删除
+                    dp[i][j - 1] + 1,  // 插入
+                    dp[i - 1][j - 1] + 1 // 替换
+                );
+            }
+        }
+    }
+    return dp[m][n];
+}
+
+int min(int a, int b, int c) {
+    return Math.min(a, Math.min(b, c));
+}
+```
