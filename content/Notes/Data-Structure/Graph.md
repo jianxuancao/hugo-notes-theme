@@ -13,6 +13,35 @@ toc: false
 图就像一个多叉树
 邻接表，好处是占用的空间少,但无法快速判断两个节点是否相邻。对于邻接矩阵，我只要看[x][y]是多少就行了
 
+
+```Java
+/* 二叉树遍历框架 */
+void traverse(TreeNode root) {
+    if (root == null) return;
+    traverse(root.left);
+    traverse(root.right);
+}
+
+/* 多叉树遍历框架 */
+void traverse(Node root) {
+    if (root == null) return;
+    for (Node child : root.children)
+        traverse(child);
+}
+
+/* 图遍历框架 */
+boolean[] visited;
+void traverse(Graph graph, int v) {
+    // 防止走回头路进入死循环
+    if (visited[v]) return;
+    // 前序遍历位置，标记节点 v 已访问
+    visited[v] = true;
+    for (Vertex neighbor : graph.neighbors(v))
+        traverse(graph, neighbor);
+}
+```
+
+
 > **一般图**
 > 邻接表
 > graph[x] 存储 x 的所有邻居节点
@@ -155,6 +184,7 @@ class Solution {
 
 
 [**输出依赖图（拓扑排序）**](https://leetcode.cn/problems/course-schedule-ii/)
+所谓拓扑排序就是把图拍扁拉直...
 ```Java
 List<Integer> postorder = new ArrayList<>();// 记录后序遍历结果
 boolean hasCycle = false;// 记录是否存在环
@@ -248,5 +278,54 @@ public boolean canFinish(int numCourses, int[][] prerequisites) {
         }
     }
     return count == numCourses;// 如果所有节点都被遍历过，说明不成环
+}
+```
+
+
+[**BFS拓扑排序**]()
+```Java
+public int[] findOrder(int numCourses, int[][] prerequisites) {
+    List<Integer>[] graph = new LinkedList[numCourses];  //建立图的邻接表（一维：每一科）（二维：每一科的前置要求）
+    for (int i = 0; i < numCourses; i++) {
+        graph[i] = new LinkedList<>();
+    }
+    for (int[] edge : prerequisites) {
+        graph[edge[1]].add(edge[0]); 
+    }
+
+    int[] indegree = new int[numCourses]; // 计算入度
+    for (int[] edge : prerequisites) {
+        int from = edge[1], to = edge[0];
+        indegree[to]++;
+    }
+
+    Queue<Integer> q = new LinkedList<>();
+    for (int i = 0; i < numCourses; i++) {// 找到入度为0的节点
+        if (indegree[i] == 0) {
+            q.offer(i);
+        }
+    }
+
+    int[] res = new int[numCourses];
+    int count = 0;
+
+    while (!q.isEmpty()) {
+        int cur = q.poll();
+        // 弹出节点的顺序即为拓扑排序结果
+        res[count] = cur;
+        count++;
+        for (int next : graph[cur]) {
+            indegree[next]--;
+            if (indegree[next] == 0) {
+                q.offer(next);
+            }
+        }
+    }
+
+    if (count != numCourses) {// 存在环，拓扑排序不存在
+        return new int[]{};
+    }
+    
+    return res;
 }
 ```
