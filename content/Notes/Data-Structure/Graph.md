@@ -207,6 +207,10 @@ void traverse(List<Integer>[] graph, int s) {
 
 
 [**环检测算法（BFS 版本）**]()
+1. 队列进行初始化后，从入度为 0 的节点开始加入队列
+2. 开始BFS，从队列中弹出一个节点，减少相邻节点的入度，同时将新产生的入度为 0 的节点加入队列
+3. 继续弹出节点，直到队列为空
+4. 如果队列中没有0度的节点说明出现了环
 ```Java
 public boolean canFinish(int numCourses, int[][] prerequisites) {
     List<Integer>[] graph = new LinkedList[numCourses];  //建立图的邻接表（一维：每一科）（二维：每一科的前置要求）
