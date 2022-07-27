@@ -24,6 +24,35 @@ toc: false
 
 2. 递归： 利用这个函数的返回值，分解问题
 
+
+```Java
+/* 二叉树遍历框架 */
+void traverse(TreeNode root) {
+    if (root == null) return;
+    traverse(root.left);
+    traverse(root.right);
+}
+
+/* 多叉树遍历框架 */
+void traverse(Node root) {
+    if (root == null) return;
+    for (Node child : root.children)
+        traverse(child);
+}
+
+/* 图遍历框架 */
+boolean[] visited;
+void traverse(Graph graph, int v) {
+    // 防止走回头路进入死循环
+    if (visited[v]) return;
+    // 前序遍历位置，标记节点 v 已访问
+    visited[v] = true;
+    for (Vertex neighbor : graph.neighbors(v))
+        traverse(graph, neighbor);
+}
+```
+
+
 [**Max Depth of Tree**](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
 ```Java
 int depth = 0;
