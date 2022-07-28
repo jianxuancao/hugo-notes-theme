@@ -205,7 +205,7 @@ int min(int a, int b, int c) {
 ```
 
 
-[]()
+[**最小下降路径（正下，左下，右下）**](https://leetcode.cn/problems/minimum-falling-path-sum/)
 ```Java
 int minFallingPathSum(int[][] matrix) {
     int n = matrix.length;
@@ -251,6 +251,41 @@ int dp(int[][] matrix, int i, int j) {
 
 int min(int a, int b, int c) {
     return Math.min(a, Math.min(b, c));
+}
+```
+
+[**最小下降路径（只有正下和右下）**](https://leetcode.cn/problems/minimum-path-sum/)
+遇上一题几乎一样，改一下dp的可能性就完了
+```Java
+int[][] memo;
+
+int minPathSum(int[][] grid) {
+    int m = grid.length;
+    int n = grid[0].length;
+    memo = new int[m][n]; // 构造备忘录，初始值全部设为 -1
+
+    for (int[] row : memo)
+        Arrays.fill(row, -1);
+    
+    return dp(grid, m - 1, n - 1);
+}
+
+int dp(int[][] grid, int i, int j) {
+    if (i == 0 && j == 0) {//base case
+        return grid[0][0];
+    }
+    if (i < 0 || j < 0) {//error case
+        return Integer.MAX_VALUE;
+    }
+    if (memo[i][j] != -1) {//use memo if memo has the answer
+        return memo[i][j];
+    }
+    memo[i][j] = Math.min(
+        dp(grid, i - 1, j),
+        dp(grid, i, j - 1)
+    ) + grid[i][j];
+
+    return memo[i][j];
 }
 ```
 
