@@ -253,3 +253,26 @@ int min(int a, int b, int c) {
     return Math.min(a, Math.min(b, c));
 }
 ```
+
+
+[**最大子数组和**](https://leetcode.cn/problems/maximum-subarray/)
+```Java
+public int maxSubArray(int[] nums) {
+    if (nums.length == 0) return 0;
+
+    int[] dp = new int[nums.length];  // 定义：dp[i] 记录以 nums[i] 为结尾的「最大子数组和」
+    dp[0] = nums[0];  // base case
+
+    for(int i = 1; i < nums.length; i++){
+        dp[i] = Math.max(dp[i-1] + nums[i], nums[i]);
+    }
+    int res = Integer.MIN_VALUE;
+    for(int cur : dp){
+        res = Math.max(res, cur);
+    }
+
+    return res;
+}
+```
+
+
