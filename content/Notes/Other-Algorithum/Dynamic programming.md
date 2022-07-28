@@ -369,3 +369,27 @@ int longestCommonSubsequence(String s1, String s2) { // 自底向上循环法
     return dp[m][n];
 }
 ```
+
+[**抢劫规划**](https://leetcode.cn/problems/house-robber/submissions/)
+```Java
+int[] memo;
+public int rob(int[] nums) {
+    memo = new int[nums.length];
+    Arrays.fill(memo, -1);
+
+    return dp(nums, 0);
+}
+
+int dp(int[] nums, int start){
+    if (start >= nums.length) { // error case
+        return 0;
+    }
+    
+    if (memo[start] != -1) return memo[start];
+
+    int result = Math.max(dp(nums, start+2) + nums[start], dp(nums, strat+1));
+    memo[start] = result;
+
+    return result;
+}
+```
