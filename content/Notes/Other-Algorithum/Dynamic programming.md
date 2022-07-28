@@ -171,7 +171,7 @@ int lengthOfLIS(int[] nums) {
 ```
 
 
-[**最小编辑距离**](https://www.bilibili.com/video/BV1uv411W73P/?vd_source=da38e0269fa2d809bfcc81efe811eed9)
+[**最小编辑距离**](https://leetcode.cn/problems/edit-distance/)
 ```Java
 int minDistance(String s1, String s2) {
     int m = s1.length(), n = s2.length(); 
@@ -197,6 +197,56 @@ int minDistance(String s1, String s2) {
         }
     }
     return dp[m][n];
+}
+
+int min(int a, int b, int c) {
+    return Math.min(a, Math.min(b, c));
+}
+```
+
+
+[]()
+```Java
+int minFallingPathSum(int[][] matrix) {
+    int n = matrix.length;
+    int res = Integer.MAX_VALUE;
+
+    memo = new int[n][n];
+    for (int i = 0; i < n; i++) {
+        Arrays.fill(memo[i], 66666);// 备忘录里的值初始化为 66666
+    }
+    
+    for (int j = 0; j < n; j++) {// 终点可能在 matrix[n-1] 的任意一列,所以要尝试最后一行每一个的最小距离
+        res = Math.min(res, dp(matrix, n - 1, j));
+    }
+    return res;
+}
+
+int[][] memo;
+
+int dp(int[][] matrix, int i, int j) {
+    
+    if (i < 0 || j < 0 ||
+        i >= matrix.length ||
+        j >= matrix[0].length) {// 索引合法性检查
+        return 99999;
+    }
+    
+    if (i == 0) { // base case,i=0代表已经回到了二维数组的最上面一行，其最小距离就是他自己
+        return matrix[0][j];
+    }
+
+    if (memo[i][j] != 66666) {
+        return memo[i][j];
+    }
+    
+    //memo[i][j] 是当前位置的最小下落距离，从memo默认的66666变成matrix当前位置的自身值加上前面的最小下落距离
+    memo[i][j] = matrix[i][j] + min(
+                                    dp(matrix, i - 1, j),       //正上方
+                                    dp(matrix, i - 1, j - 1),   //左上
+                                    dp(matrix, i - 1, j + 1)    //右上
+                                );
+    return memo[i][j];
 }
 
 int min(int a, int b, int c) {
