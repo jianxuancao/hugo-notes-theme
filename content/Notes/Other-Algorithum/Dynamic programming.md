@@ -370,10 +370,10 @@ int longestCommonSubsequence(String s1, String s2) { // 自底向上循环法
 }
 ```
 
-[**抢劫规划**](https://leetcode.cn/problems/house-robber/submissions/)
+[**抢劫规划**](https://leetcode.cn/problems/house-robber/)
 ```Java
 int[] memo;
-public int rob(int[] nums) {
+public int rob(int[] nums) { //迭代式
     memo = new int[nums.length];
     Arrays.fill(memo, -1);
 
@@ -387,9 +387,80 @@ int dp(int[] nums, int start){
     
     if (memo[start] != -1) return memo[start];
 
-    int result = Math.max(dp(nums, start+2) + nums[start], dp(nums, strat+1));
+    int result = Math.max(dp(nums, start+2) + nums[start], dp(nums, start+1));
     memo[start] = result;
 
     return result;
+}
+
+int rob(int[] nums) {  //自底向上循环的方法
+    int n = nums.length;
+    // base case: dp[n] = 0
+    int[] dp = new int[n + 2];
+    for (int i = n - 1; i >= 0; i--) {
+        dp[i] = Math.max(dp[i + 1], nums[i] + dp[i + 2]);
+    }
+    return dp[0];
+}
+```
+
+
+[**环形抢劫规划**](https://leetcode.cn/problems/house-robber-ii/)
+```Java
+public int rob(int[] nums) {
+    int n = nums.length;
+    if (n == 1) return nums[0];
+
+    int[] memo1 = new int[n];
+    int[] memo2 = new int[n];
+    Arrays.fill(memo1, -1);
+    Arrays.fill(memo2, -1);
+    return Math.max(
+            dp(nums, 0, n - 2, memo1),  //0和-2，也就是0，-1，-2，其中-1隔开不抢
+            dp(nums, 1, n - 1, memo2)   //1和-1，也就是1，0，-1，其中0隔开不抢
+    );
+}
+
+// 定义：计算闭区间 [start,end] 的最优结果
+int dp(int[] nums, int start, int end, int[] memo) {
+    if (start > end) { // error case
+        return 0;
+    }
+
+    if (memo[start] != -1) {
+        return memo[start];
+    }
+
+    int res = Math.max(
+            dp(nums, start + 2, end, memo) + nums[start],
+            dp(nums, start + 1, end, memo)
+    );
+
+    memo[start] = res;
+    return res;
+}
+```
+
+
+[**二叉树抢劫**](https://leetcode.cn/problems/house-robber-iii/)
+```Java
+Map<TreeNode, Integer> memo = new HashMap<>();
+
+public int rob(TreeNode root) {
+    if (root == null) return 0; //base case, 当前位置没有房子
+
+    if (memo.containsKey(root)) //memo case
+        return memo.get(root);
+
+    // 抢，去下下家
+    int do_it = root.val + 
+    (root.left == null ? 0 : rob(root.left.left) + rob(root.left.right)) + //
+    (root.right == null ? 0 : rob(root.right.left) + rob(root.right.right));
+    
+    int not_do = rob(root.left) + rob(root.right);// 不抢，去下家
+
+    int res = Math.max(do_it, not_do);
+    memo.put(root, res);
+    return res;
 }
 ```
