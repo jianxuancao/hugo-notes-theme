@@ -276,3 +276,36 @@ public int maxSubArray(int[] nums) {
 ```
 
 
+[**最长公共子序列**](https://leetcode.cn/problems/longest-common-subsequence/)
+```Java
+int[][] memo;
+
+int longestCommonSubsequence(String s1, String s2) {
+    int m = s1.length(), n = s2.length();
+    memo = new int[m][n];
+    for (int[] row : memo) 
+        Arrays.fill(row, -1); // -1代表未计算
+
+    return dp(s1, 0, s2, 0); //s1[0..]和s2[0..]的lcs长度
+}
+
+int dp(String s1, int i, String s2, int j) {// 定义：计算 s1[i..] 和 s2[j..] 的最长公共子序列长度
+    if (i == s1.length() || j == s2.length()) {   // base case
+        return 0;
+    }
+
+    if (memo[i][j] != -1) {
+        return memo[i][j];
+    }
+    
+    if (s1.charAt(i) == s2.charAt(j)) {//如果字符一样，那么当前位置肯定是互为子串，同时进一，memo里这个位置的值是 1+后面字串的 lcs
+        memo[i][j] = 1 + dp(s1, i + 1, s2, j + 1);
+    } else {
+        memo[i][j] = Math.max( // s1[i] 和 s2[j] 至少有一个不在 lcs 中
+            dp(s1, i + 1, s2, j), // s1不在的情况
+            dp(s1, i, s2, j + 1)  // s2不在的情况
+        );
+    }
+    return memo[i][j];
+}
+```
