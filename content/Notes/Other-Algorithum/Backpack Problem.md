@@ -33,9 +33,39 @@ int knapsack(int W, int N, int[] wt, int[] val) {
 ```
 
 
-[]()
+[**分出两个一样值的子集**](https://leetcode.cn/problems/partition-equal-subset-sum/)
 ```Java
+public boolean canPartition(int[] nums) {
+    int sum = 0;
+    for (int num : nums) sum += num;
+    
+    if (sum % 2 != 0) return false; // 和为奇数时，不可能划分成两个和相等的集合
 
+    int n = nums.length;
+    sum = sum / 2; //半个背包
+    
+    boolean[][] dp = new boolean[n + 1][sum + 1]; 
+    // true: 对于容量为 j 的背包，若只是用前 i 个物品，可以有一种方法把背包恰好装满。
+
+    //base case: dp[..][0] = true 和 dp[0][..] = false
+    //因为背包没有空间的时候，就相当于装满了，而当没有物品可选择的时候，肯定没办法装满背包。
+    for (int i = 0; i <= n; i++)
+        dp[i][0] = true;
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= sum; j++) {
+            if (j < nums[i - 1]) {
+                dp[i][j] = dp[i - 1][j]; // 背包容量不足，不能装入第 i 个物品
+            } else {
+                //装入或不装入背包,只要有个true就可以，所以用 or
+                //如果不把 nums[i](第i个物品)装入背包，是否能够恰好装满背包，取决于上一个状态 dp[i-1][j]
+                //如果把 nums[i](第i个物品)装入了背包，是否能够恰好装满背包，取决于dp[i-1][j-nums[i-1]]
+                dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];
+            }
+        }
+    }
+    return dp[n][sum];
+}
 ```
 
 
