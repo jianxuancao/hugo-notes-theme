@@ -101,8 +101,8 @@ public boolean canPartition(int[] nums) {
 ```
 
 
-[**目标和**](https://leetcode.cn/problems/target-sum/)
-\n[第一个解法是回溯]({{<relref "Back Track.md">}})
+[**目标和**](https://leetcode.cn/problems/target-sum/)\
+[第一个解法是回溯]({{<relref "Back Track.md">}})
 ```Java
 int result = 0;
 int findTargetSumWays(int[] nums, int target) {
@@ -126,6 +126,38 @@ void backtrack(int[] nums, int i, int remain) {/* 回溯算法 */
     remain -= nums[i];// 给 nums[i] 选择 + 号
     backtrack(nums, i + 1, remain);// 穷举 nums[i + 1]
     remain += nums[i];// 撤销选择
+}
+```
+动态规划
+```Java
+int findTargetSumWays(int[] nums, int target) {
+    int sum = 0;
+    for (int n : nums) sum += n;
+    if (sum < Math.abs(target) || (sum + target) % 2 == 1) {    // 这两种情况，不可能存在合法的子集划分
+
+        return 0;
+    }
+    return subsets(nums, (sum + target) / 2);
+}
+
+int subsets(int[] nums, int sum) {/* 计算 nums 中有几个子集的和为 sum */
+    int n = nums.length;
+    int[][] dp = new int[n + 1][sum + 1];
+    // base case
+    dp[0][0] = 1;
+    
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j <= sum; j++) {
+            if (j >= nums[i-1]) {
+                // 两种选择的结果之和
+                dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]];
+            } else {
+                // 背包的空间不足，只能选择不装物品 i
+                dp[i][j] = dp[i-1][j];
+            }
+        }
+    }
+    return dp[n][sum];
 }
 
 ```
