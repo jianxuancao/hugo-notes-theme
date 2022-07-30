@@ -33,6 +33,30 @@ int knapsack(int W, int N, int[] wt, int[] val) {
 ```
 
 
+[**完全背包**](https://leetcode.cn/problems/coin-change-2/submissions/)
+```Java
+public int change(int amount, int[] coins) {
+    int[][] dp = new int[coins.length + 1][amount + 1]; //dp[n][w]： 对前n个物品，剩余w空间的时候，可能的最大价值
+
+    //base case
+    for(int i = 0; i <= coins.length; i++){
+        coins[i][0] = 1;
+    }
+
+    for (int i = 1; i <= coins.length; i++) { //遍历所有硬币
+        for (int w = 1; w <= amount; w++) { //遍历所有的剩余容量
+            if (j - coins[i-1] >= 0)
+                dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i-1]];
+            else 
+                dp[i][j] = dp[i - 1][j];
+        }
+    }
+    return dp[coins.length][amount];
+}
+
+```
+
+
 [**分出两个一样值的子集**](https://leetcode.cn/problems/partition-equal-subset-sum/)
 ```Java
 public boolean canPartition(int[] nums) {
@@ -66,12 +90,6 @@ public boolean canPartition(int[] nums) {
     }
     return dp[n][sum];
 }
-```
-
-
-[]()
-```Java
-
 ```
 
 
