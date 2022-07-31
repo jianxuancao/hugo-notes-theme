@@ -24,7 +24,7 @@ void BST(TreeNode root, int target) {
 }
 ```
 
-### [**遍历BST**]
+### [**遍历BST**]()
 
 ```Java
 void traverse(TreeNode root) {
