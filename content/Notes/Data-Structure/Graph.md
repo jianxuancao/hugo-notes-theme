@@ -8,7 +8,7 @@ weight: 2
 # Page metadata.
 date: '2018-09-09T00:00:00Z'
 type: book # Do not modify.
-toc: false
+toc: True
 ---
 图就像一个多叉树
 邻接表，好处是占用的空间少,但无法快速判断两个节点是否相邻。对于邻接矩阵，我只要看[x][y]是多少就行了

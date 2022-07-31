@@ -8,7 +8,7 @@ weight: 2
 # Page metadata.
 date: '2018-09-09T00:00:00Z'
 type: book # Do not modify.
-toc: false
+toc: True
 ---
 
 ### [**有序数组去重**](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)

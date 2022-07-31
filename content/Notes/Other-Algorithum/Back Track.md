@@ -8,7 +8,7 @@ weight: 2
 # Page metadata.
 date: '2018-09-09T00:00:00Z'
 type: book # Do not modify.
-toc: false
+toc: True
 ---
 回溯算法的框架就是DFS遍历，同时在遍历到叶的时候，判断是否符合条件，如果符合，保存下来
 

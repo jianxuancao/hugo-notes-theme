@@ -8,7 +8,7 @@ weight: 2
 # Page metadata.
 date: '2018-09-09T00:00:00Z'
 type: book # Do not modify.
-toc: false
+toc: True
 ---
 BST是有顺序的，一般是左小右大，而普通的二叉树妹有顺序
 BST 中序遍历的时候，如果先左后右就是升序排序结果，先右后左就是降序

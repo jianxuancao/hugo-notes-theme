@@ -8,7 +8,7 @@ weight: 2
 # Page metadata.
 date: '2018-09-09T00:00:00Z'
 type: book # Do not modify.
-toc: false
+toc: True
 
 ---
 这里是深度优先遍历，[广度优先遍历看这个Note]({{<relref "../Other-Algorithum/BFS.md">}})

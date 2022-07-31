@@ -8,7 +8,7 @@ weight: 2
 # Page metadata.
 date: '2018-09-09T00:00:00Z'
 type: book # Do not modify.
-toc: false
+toc: True
 ---
 背包问题其实本质上也是动态规划的一个子问题
 第一步要明确「状态」和「选择」，状态包括[可以选择的物品]和[背包容量]，选择就是[装进背包]或者[不装进背包]
