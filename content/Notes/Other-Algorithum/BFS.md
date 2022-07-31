@@ -11,6 +11,7 @@ type: book # Do not modify.
 toc: false
 ---
 [DFS其实就是前中后序递归]({{<relref "../Data-Structure/Tree.md">}})
+
 BFS空间复杂度高，DFS空间复杂度较低。
 
 [**BFS(计算最小深度)**](https://leetcode.cn/problems/minimum-depth-of-binary-tree/)
@@ -97,9 +98,10 @@ int openLock(String[] deadends, String target) {
 }
 ```
 
-
 [**带禁止组合的开锁问题（双向BFS）**](https://leetcode.cn/problems/open-the-lock/)
+
 从底部和root同时扩散，找出相遇时间，最坏的情况下与正常BFS一样，但是大多数时候更快
+
 ```Java
 int openLock(String[] deadends, String target) {
     Set<String> deads = new HashSet<>();

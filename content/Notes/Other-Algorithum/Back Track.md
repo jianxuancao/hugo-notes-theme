@@ -10,8 +10,6 @@ date: '2018-09-09T00:00:00Z'
 type: book # Do not modify.
 toc: false
 ---
-# 回溯算法
-
 回溯算法的框架就是DFS遍历，同时在遍历到叶的时候，判断是否符合条件，如果符合，保存下来
 
 ```Java
@@ -27,7 +25,7 @@ def backtrack(路径, 选择列表):
         撤销选择
 ```
 
-## [**全排列**](https://leetcode.cn/problems/permutations/)
+### [**全排列**](https://leetcode.cn/problems/permutations/)
 
 这个题其实就是回溯算法的基本框架
 
@@ -65,7 +63,7 @@ void backtrack(int[] nums, LinkedList<Integer> track, boolean[] used) {
 
 ```
 
-## [**n皇后**](https://leetcode.cn/problems/n-queens/)
+### [**n皇后**](https://leetcode.cn/problems/n-queens/)
 
 ```Java
 List<List<String>> res = new ArrayList<>();
