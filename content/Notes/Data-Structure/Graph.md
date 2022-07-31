@@ -65,7 +65,8 @@ void traverse(Graph graph, int v) {
 > int[][] matrix, [x][y] 记录 x 指向 y 的边的权重，0 表示不相邻
 > 对于一个link，[x][y]，[y][x]需要同时赋值，写成双向接通
 
-[**DFS遍历图**]()
+### [**DFS遍历图**]()
+
 ```Java
 boolean[] visited;// 记录被遍历过的节点
 boolean[] onPath;// 记录从起点到当前节点的路径
@@ -83,8 +84,8 @@ void traverse(Graph graph, int s) { //s初始为0，代表起始节点
 
 ```
 
+### [**节点0到节点n-1的所有可能路径**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 
-[**节点0到节点n-1的所有可能路径**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 ```Java
 List<List<Integer>> res = new LinkedList<>();// 记录所有路径
     
@@ -114,8 +115,8 @@ void traverse(int[][] graph, int s, LinkedList<Integer> path) {/* 图的遍历�
 
 ```
 
+### [**无环图中所有可能的路径**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 
-[**无环图中所有可能的路径**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 ```Java
 List<List<Integer>> result = new LinkedList<>();// 记录所有路径
 public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
@@ -138,8 +139,8 @@ void traverse(int[][] graph, int s, LinkedList<Integer> path) {
 }
 ```
 
+### [**环检测算法(课程表)(DFS)**](https://leetcode.cn/problems/course-schedule/)
 
-[**环检测算法(课程表)(DFS)**](https://leetcode.cn/problems/course-schedule/)
 ```Java
 class Solution {
     boolean[] onPath;// 记录一次递归堆栈中的节点
@@ -182,9 +183,10 @@ class Solution {
 }
 ```
 
+### [**输出依赖图（拓扑排序）**](https://leetcode.cn/problems/course-schedule-ii/)
 
-[**输出依赖图（拓扑排序）**](https://leetcode.cn/problems/course-schedule-ii/)
 所谓拓扑排序就是把图拍扁拉直...
+
 ```Java
 List<Integer> postorder = new ArrayList<>();// 记录后序遍历结果
 boolean hasCycle = false;// 记录是否存在环
@@ -235,8 +237,8 @@ void traverse(List<Integer>[] graph, int s) {
 }
 ```
 
+### [**环检测算法（BFS 版本）**]()
 
-[**环检测算法（BFS 版本）**]()
 1. 队列进行初始化后，从入度为 0 的节点开始加入队列
 2. 开始BFS，从队列中弹出一个节点，减少相邻节点的入度，同时将新产生的入度为 0 的节点加入队列
 3. 继续弹出节点，直到队列为空
@@ -281,8 +283,8 @@ public boolean canFinish(int numCourses, int[][] prerequisites) {
 }
 ```
 
+### [**BFS拓扑排序**]()
 
-[**BFS拓扑排序**]()
 ```Java
 public int[] findOrder(int numCourses, int[][] prerequisites) {
     List<Integer>[] graph = new LinkedList[numCourses];  //建立图的邻接表（一维：每一科）（二维：每一科的前置要求）
@@ -330,8 +332,8 @@ public int[] findOrder(int numCourses, int[][] prerequisites) {
 }
 ```
 
+### [**判断二分图DFS**](https://leetcode.cn/problems/is-graph-bipartite/)
 
-[**判断二分图DFS**](https://leetcode.cn/problems/is-graph-bipartite/)
 ```Java
 boolean ok = true;
 boolean[] color;
@@ -366,16 +368,4 @@ private void traverse(int[][] graph, int node) {
         }
     }
 }
-```
-
-
-[****](https://leetcode.cn/problems/possible-bipartition/)
-```Java
-
-```
-
-
-[****]()
-```Java
-
 ```

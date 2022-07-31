@@ -11,7 +11,8 @@ type: book # Do not modify.
 toc: false
 ---
 
-[**有序数组去重**](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
+### [**有序数组去重**](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
+
 ```Java
 public int removeDuplicates(int[] nums) {
 	int slow = 0, fast = 0;
@@ -28,8 +29,8 @@ public int removeDuplicates(int[] nums) {
 }
 ```
 
+### [**移动0到末尾**](https://leetcode.cn/problems/move-zeroes/)
 
-[**移动0到末尾**](https://leetcode.cn/problems/move-zeroes/)
 ```Java
 public void moveZeroes(int[] nums) {
 	int slow = 0, fast = 0;
@@ -48,8 +49,8 @@ public void moveZeroes(int[] nums) {
 }
 ```
 
+### [**找出两数之和的位置**](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
 
-[**找出两数之和的位置**](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
 ```Java
 public int[] twoSum(int[] numbers, int target) {// 快慢指针
 	int slow = 0, fast = 1;
@@ -87,8 +88,8 @@ int[] twoSum(int[] nums, int target) {  //左右指针
 }
 ```
 
+### [**反转数组**](https://leetcode.cn/problems/reverse-string/)
 
-[**反转数组**](https://leetcode.cn/problems/reverse-string/)
 ```Java
 public void reverseString(char[] s) {
 	int left = 0, right = s.length - 1;
@@ -102,9 +103,10 @@ public void reverseString(char[] s) {
 }
 ```
 
+### [**回文串判断**]()
 
-[**回文串判断**]()
 从中心向两端扩散
+
 ```Java
 boolean isPalindrome(String s) {
     int left = 0, right = s.length() - 1;
@@ -119,9 +121,10 @@ boolean isPalindrome(String s) {
 }
 ```
 
+### [**最长回文子串**](https://leetcode.cn/problems/longest-palindromic-substring/)
 
-[**最长回文子串**](https://leetcode.cn/problems/longest-palindromic-substring/)
 向两边展开是合理的思路
+
 ```Java
 public String longestPalindrome(String s) {
 	String res = "";
@@ -143,8 +146,8 @@ String palindrome(String s, int l, int r) {
 }
 ```
 
+### [**滑动窗口算法框架**]()
 
-[**滑动窗口算法框架**]()
 ```Java
 void slidingWindow(String s) {
     HashMap<Character, Integer> window;
@@ -168,7 +171,8 @@ void slidingWindow(String s) {
 }
 ```
 
-[**最小覆盖子串**](https://leetcode.cn/problems/minimum-window-substring/)
+### [**最小覆盖子串**](https://leetcode.cn/problems/minimum-window-substring/)
+
 ```Java
 public String minWindow(String s, String t) {
     HashMap<Character, Integer> window= new HashMap<>();
@@ -216,8 +220,8 @@ public String minWindow(String s, String t) {
 
 ```
 
+### [**字符串的排列**](https://leetcode.cn/problems/permutation-in-string/)
 
-[**字符串的排列**](https://leetcode.cn/problems/permutation-in-string/)
 ```Java
 public boolean checkInclusion(String t, String s) {
     HashMap<Character, Integer> window = new HashMap<>();
@@ -265,8 +269,8 @@ public boolean checkInclusion(String t, String s) {
 }
 ```
 
+### [**找到所有字母排列**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 
-[**找到所有字母排列**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 ```Java
 public List<Integer> findAnagrams(String s, String p) {
     HashMap<Character, Integer> window = new HashMap<>();
@@ -314,8 +318,8 @@ public List<Integer> findAnagrams(String s, String p) {
 }
 ```
 
+### [**字符串的排列**](https://leetcode.cn/problems/permutation-in-string/)
 
-[**字符串的排列**](https://leetcode.cn/problems/permutation-in-string/)
 ```Java
 public boolean checkInclusion(String t, String s) {
     HashMap<Character, Integer> window = new HashMap<>();
@@ -363,8 +367,8 @@ public boolean checkInclusion(String t, String s) {
 }
 ```
 
+### [**找到所有字母排列**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 
-[**找到所有字母排列**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 ```Java
 public int lengthOfLongestSubstring(String s) {
     HashSet<Character> window = new HashSet<>();
@@ -387,8 +391,8 @@ public int lengthOfLongestSubstring(String s) {
 }
 ```
 
+### [**最长无重复子串**](https://leetcode.cn/problems/longest-substring-without-repeating-characters/submissions/)
 
-[**最长无重复子串**](https://leetcode.cn/problems/longest-substring-without-repeating-characters/submissions/)
 ```Java
 public int lengthOfLongestSubstring(String s) {
     HashSet<Character> window = new HashSet<>();
@@ -411,8 +415,8 @@ public int lengthOfLongestSubstring(String s) {
 }
 ```
 
+### [**二分查找**](https://leetcode.cn/problems/binary-search/)
 
-[**二分查找**](https://leetcode.cn/problems/binary-search/)
 ```Java
 public int search(int[] nums, int target) {
     int left = 0 ;
@@ -432,8 +436,8 @@ public int search(int[] nums, int target) {
 }
 ```
 
+### [**左侧边界**]()
 
-[**左侧边界**]()
 ```Java
 int left_bound(int[] nums, int target) {
     // 搜索区间为 [left, right]
@@ -459,8 +463,8 @@ int left_bound(int[] nums, int target) {
 }
 ```
 
+### [**右侧边界**]()
 
-[**右侧边界**]()
 ```Java
 int right_bound(int[] nums, int target) {
     int left = 0, right = nums.length - 1;
@@ -481,8 +485,8 @@ int right_bound(int[] nums, int target) {
 }
 ```
 
+### [**按权重随机选择**](https://leetcode.cn/problems/random-pick-with-weight/submissions/)
 
-[**按权重随机选择**](https://leetcode.cn/problems/random-pick-with-weight/submissions/)
 ```Java
 class Solution {
     private int[] preSum;
@@ -526,8 +530,8 @@ class Solution {
 }
 ```
 
+### [**田忌赛马**]()
 
-[**田忌赛马**]()
 ```Java
 int[] advantageCount(int[] nums1, int[] nums2) {
     int n = nums1.length;

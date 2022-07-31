@@ -52,8 +52,8 @@ void traverse(Graph graph, int v) {
 }
 ```
 
+### [**Max Depth of Tree**](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
 
-[**Max Depth of Tree**](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
 ```Java
 int depth = 0;
 int maxD = 0;
@@ -81,8 +81,7 @@ void traverse(TreeNode input){
 
 ```
 
-
-[**Diameter of tree**](https://leetcode.cn/problems/diameter-of-binary-tree/submissions/)
+### [**Diameter of tree**](https://leetcode.cn/problems/diameter-of-binary-tree/submissions/)
 
 ```Java
 int max = 0;
@@ -106,8 +105,7 @@ int maxDepth(TreeNode root){
 }
 ```
 
-
-[**invert binary tree**](https://leetcode.cn/problems/invert-binary-tree/)
+### [**invert binary tree**](https://leetcode.cn/problems/invert-binary-tree/)
 
 ```Java
 public TreeNode invertTree(TreeNode root) {
@@ -126,8 +124,7 @@ public TreeNode invertTree(TreeNode root) {
 }
 ```
 
-
-[**flatten tree**](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/)
+### [**flatten tree**](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/)
 
 ```Java
 public void flatten(TreeNode root) {
@@ -154,7 +151,8 @@ public void flatten(TreeNode root) {
 }
 ```
 
-[**maximum tree**](https://leetcode.cn/problems/maximum-binary-tree/)
+### [**maximum tree**](https://leetcode.cn/problems/maximum-binary-tree/)
+
 ```Java
 public TreeNode constructMaximumBinaryTree(int[] nums) {
     return build(nums, 0, nums.length-1);
@@ -183,7 +181,8 @@ TreeNode build(int[]nums, int left, int right){
 }
 ```
 
-[**tree from preorder/inorder**](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+### [**tree from preorder/inorder**](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
 ```Java
 HashMap<Integer, Integer> valToIndex = new HashMap<>();
 
@@ -212,7 +211,8 @@ TreeNode build(int[] preorder, int preStart, int preEnd, int[] inorder, int inSt
 }
 ```
 
-[**tree from inorder and postorder**](https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
+### [**tree from inorder and postorder**](https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
+
 ```Java
 HashMap<Integer, Integer> valToIndex = new HashMap<>();
 public TreeNode buildTree(int[] inorder, int[] postorder) {
@@ -239,7 +239,8 @@ TreeNode build (int[] inorder, int inStart, int inEnd, int[] postorder, int post
 }
 ```
 
-[**tree from preorder and postorder**](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/)
+### [**tree from preorder and postorder**](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/)
+
 ```Java
 HashMap<Integer, Integer> valPointer = new HashMap<>();
 public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
@@ -273,7 +274,8 @@ TreeNode build(int[]preorder, int preStart, int preEnd, int[]postorder, int post
 }
 ```
 
-[**serialize/deserialize**](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/)
+### [**serialize/deserialize**](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/)
+
 ```Java
 // Encodes a tree to a single string.
 public String serialize(TreeNode root) {
@@ -320,7 +322,8 @@ public TreeNode deserialize(LinkedList<String> nodes) {
 }
 ```
 
-[**find duplicate subtrees**](https://leetcode.cn/problems/find-duplicate-subtrees/)
+### [**find duplicate subtrees**](https://leetcode.cn/problems/find-duplicate-subtrees/)
+
 ```Java
 HashMap<String, Integer> memo = new HashMap<>(); // 记录所有子树以及出现的次数
 ArrayList<TreeNode> result = new ArrayList<>(); // 记录重复的子树根节点

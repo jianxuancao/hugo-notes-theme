@@ -41,15 +41,15 @@ List<List<Integer>> permute(int[] nums) { /* 主函数，输入一组不重复�
 }
 
 // 路径：记录在 track 中
-// 选择列表：nums 中不存在于 track 的那些元素（used[i] 为 false）
+// 选择列表：nums 中还没用过的元素（used[i] 为 false）
 // 结束条件：nums 中的元素全都在 track 中出现
 void backtrack(int[] nums, LinkedList<Integer> track, boolean[] used) {    
-    if (track.size() == nums.length) { // 触发结束条件
+    if (track.size() == nums.length) { // 触发结束条件，就是路径已经与所有的元素一样长，完全排好了
         res.add(new LinkedList(track));
         return;
     }
 
-    for (int i = 0; i < nums.length; i++) { // 
+    for (int i = 0; i < nums.length; i++) { 
         if (used[i]) { // nums[i] 已经在 track 中，跳过（比如1，2，下一个就不能是1或者2了）
             continue;
         }

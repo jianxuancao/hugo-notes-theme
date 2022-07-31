@@ -13,6 +13,7 @@ toc: false
 
 [**斐波那契数组（从上到下）**](https://leetcode.cn/problems/fibonacci-number/)
 这是从上到下的解法，从递归树的头部开始，递归时会发现斐波那契的地递归有很多重复值，使用一个memo就可以不进行重复的递归计算，直接取值降低时间复杂度
+
 ```Java
 public int fib(int n) {
     int[] memo = new int[n + 1];
@@ -35,9 +36,10 @@ int helper (int [] memo, int n){
 }
 ```
 
+### [**斐波那契数组（从下到上）**](https://leetcode.cn/problems/fibonacci-number/)
 
-[**斐波那契数组（从下到上）**](https://leetcode.cn/problems/fibonacci-number/)
 这是从下到上的解法，也就是从0开始用for循环到n，用一个dp数组记录每一个n的斐波那契值，这样dp[n]就是结果。
+
 ```Java
 public int fib(int n) {
     if (n == 0) return 0;
@@ -53,9 +55,10 @@ public int fib(int n) {
 }
 ```
 
+### [**斐波那契数组（最优解）**](https://leetcode.cn/problems/fibonacci-number/)
 
-[**斐波那契数组（最优解）**](https://leetcode.cn/problems/fibonacci-number/)
 不管是从下到上还是从上到下，都是用空间换时间（用一个数组来储存之前的值），但是斐波那契数只与前两个值有关系，所以没必要存储整个列表，只要存前两个值动态更新就好了
+
 ```Java
 public int fib(int n) {
     if (n == 0 || n == 1) return n;
@@ -71,9 +74,10 @@ public int fib(int n) {
 }
 ```
 
+### [**凑零钱（从大往小）**](https://leetcode.cn/problems/coin-change/)
 
-[**凑零钱（从大往小）**](https://leetcode.cn/problems/coin-change/)
 使用memo，空间换时间
+
 ```Java
 int[] memo;
 
@@ -101,8 +105,8 @@ int dp(int[] coins, int amount) {
 }
 ```
 
+### [**凑零钱（dp数组迭代方式，从前往后）**](https://leetcode.cn/problems/coin-change/)
 
-[**凑零钱（dp数组迭代方式，从前往后）**](https://leetcode.cn/problems/coin-change/)
 ```Java
 int coinChange(int[] coins, int amount) {
     int[] dp = new int[amount + 1]; // n块钱的时候最少需要几个硬币
@@ -120,8 +124,8 @@ int coinChange(int[] coins, int amount) {
 }
 ```
 
+### [**最长递增子序列**](https://leetcode.cn/problems/longest-increasing-subsequence/)
 
-[**最长递增子序列**](https://leetcode.cn/problems/longest-increasing-subsequence/)
 ```Java
 int lengthOfLIS(int[] nums) {
     int[] dp = new int[nums.length];// dp[i] 表示以 nums[i] 这个数结尾的最长递增子序列的长度
@@ -142,9 +146,10 @@ int lengthOfLIS(int[] nums) {
 }
 ```
 
+### [**俄罗斯套娃信封问题**](https://leetcode.cn/problems/russian-doll-envelopes/)
 
-[**俄罗斯套娃信封问题**](https://leetcode.cn/problems/russian-doll-envelopes/)
 跟最长递增子序列相似，首先，我们对宽边排序，这样保证后面的起码能塞进前一个的宽边（其实替换成高也行），然后就跟上一题一模一样了
+
 ```Java
 public int maxEnvelopes(int[][] envelopes) { // envelopes = [[w, h], [w, h]...]
     int n = envelopes.length; 
@@ -170,8 +175,8 @@ int lengthOfLIS(int[] nums) {
 
 ```
 
+### [**最小编辑距离**](https://leetcode.cn/problems/edit-distance/)
 
-[**最小编辑距离**](https://leetcode.cn/problems/edit-distance/)
 ```Java
 int minDistance(String s1, String s2) {
     int m = s1.length(), n = s2.length(); 
@@ -204,8 +209,8 @@ int min(int a, int b, int c) {
 }
 ```
 
+### [**最小下降路径（正下，左下，右下）**](https://leetcode.cn/problems/minimum-falling-path-sum/)
 
-[**最小下降路径（正下，左下，右下）**](https://leetcode.cn/problems/minimum-falling-path-sum/)
 ```Java
 int minFallingPathSum(int[][] matrix) {
     int n = matrix.length;
@@ -254,8 +259,10 @@ int min(int a, int b, int c) {
 }
 ```
 
-[**最小下降路径（只有正下和右下）**](https://leetcode.cn/problems/minimum-path-sum/)
+### [**最小下降路径（只有正下和右下）**](https://leetcode.cn/problems/minimum-path-sum/)
+
 遇上一题几乎一样，改一下dp的可能性就完了
+
 ```Java
 int[][] memo;
 
@@ -289,8 +296,8 @@ int dp(int[][] grid, int i, int j) {
 }
 ```
 
+### [**最大子数组和**](https://leetcode.cn/problems/maximum-subarray/)
 
-[**最大子数组和**](https://leetcode.cn/problems/maximum-subarray/)
 ```Java
 public int maxSubArray(int[] nums) {
     if (nums.length == 0) return 0;
@@ -310,8 +317,8 @@ public int maxSubArray(int[] nums) {
 }
 ```
 
+### [**最长公共子序列**](https://leetcode.cn/problems/longest-common-subsequence/)
 
-[**最长公共子序列**](https://leetcode.cn/problems/longest-common-subsequence/)
 ```Java
 int[][] memo;
 
@@ -370,7 +377,8 @@ int longestCommonSubsequence(String s1, String s2) { // 自底向上循环法
 }
 ```
 
-[**抢劫规划**](https://leetcode.cn/problems/house-robber/)
+### [**抢劫规划**](https://leetcode.cn/problems/house-robber/)
+
 ```Java
 int[] memo;
 public int rob(int[] nums) { //迭代式
@@ -404,8 +412,8 @@ int rob(int[] nums) {  //自底向上循环的方法
 }
 ```
 
+### [**环形抢劫规划**](https://leetcode.cn/problems/house-robber-ii/)
 
-[**环形抢劫规划**](https://leetcode.cn/problems/house-robber-ii/)
 ```Java
 public int rob(int[] nums) {
     int n = nums.length;
@@ -441,8 +449,8 @@ int dp(int[] nums, int start, int end, int[] memo) {
 }
 ```
 
+### [**二叉树抢劫**](https://leetcode.cn/problems/house-robber-iii/)
 
-[**二叉树抢劫**](https://leetcode.cn/problems/house-robber-iii/)
 ```Java
 Map<TreeNode, Integer> memo = new HashMap<>();
 
