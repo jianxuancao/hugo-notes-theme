@@ -149,11 +149,9 @@ int subsets(int[] nums, int sum) {/* 计算 nums 中有几个子集的和为 sum
     for (int i = 1; i <= n; i++) {
         for (int j = 0; j <= sum; j++) {
             if (j >= nums[i-1]) {
-                // 两种选择的结果之和
-                dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]];
+                dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]];// 两种选择的结果之和
             } else {
-                // 背包的空间不足，只能选择不装物品 i
-                dp[i][j] = dp[i-1][j];
+                dp[i][j] = dp[i-1][j];// 背包的空间不足，只能选择不装物品 i
             }
         }
     }
