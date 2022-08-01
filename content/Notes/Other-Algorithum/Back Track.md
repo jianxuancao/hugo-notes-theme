@@ -55,7 +55,9 @@ void backtrack(int[] nums, LinkedList<Integer> track, boolean[] used) {
         }
         track.add(nums[i]);// 做选择, 前序
         used[i] = true;
+        
         backtrack(nums, track, used);// 进入下一层决策树
+        
         track.removeLast();// 当前节点的子节点遍历完成，返回到上一层，取消选择，后序
         used[i] = false;
     }
@@ -69,27 +71,26 @@ void backtrack(int[] nums, LinkedList<Integer> track, boolean[] used) {
 List<List<String>> res = new ArrayList<>();
 
 public List<List<String>> solveNQueens(int n) {
-    List<String> originalboard = new ArrayList<>();
+    List<String> originalboard = new ArrayList<>(); //create a cheess board
     for(int i = 0; i < n; i++){
-        originalboard.add(".".repeat(n));
+        originalboard.add(".".repeat(n)); // . means no queen 
     }
-    backtrack(originalboard, 0);
+    backtrack(originalboard, 0); //从第0行开始
     return res;
 }
-
 
 // 路径：board 中小于 row 的那些行都已经成功放置了皇后
 // 选择列表：第 row 行的所有列都是放置皇后的选择
 // 结束条件：row 超过 board 的最后一行
 void backtrack(List<String> board, int row) {
     if (row == board.size()) {// 触发结束条件
-        res.add(new ArrayList<>(board));
+        res.add(new ArrayList<>(board)); //添加到结果集里
         return;
     }
 
     int n = board.get(row).length();
-    for (int col = 0; col < n; col++) {
-        if (!isValid(board, row, col)) {// 排除不合法选择
+    for (int col = 0; col < n; col++) { // 当前这一行每一个位置都判断一下
+        if (!isValid(board, row, col)) {// 首先排除不合法选择
             continue;
         }
 
@@ -98,7 +99,8 @@ void backtrack(List<String> board, int row) {
         rowChar[col] = 'Q';
         board.set(row, String.valueOf(rowChar));
         
-        backtrack(board, row + 1);// 进入下一行决策
+        backtrack(board, row + 1);// 进入下一行决策， 
+        // 比如：当前一行为。。q 。的时候，看看下一行能不能凑出来，一直到全都凑出来为止，相当于树结构
 
         // 撤销选择
         rowChar = board.get(row).toCharArray();

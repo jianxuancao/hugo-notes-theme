@@ -165,3 +165,45 @@ int subsets(int[] nums, int sum) {/* 计算 nums 中有几个子集的和为 sum
 }
 
 ```
+
+### [**划分为k个相等的子集**](https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/)
+
+```Java
+boolean canPartitionKSubsets(int[] nums, int k) {//分成k个等分
+    // 排除一些基本情况
+    if (k > nums.length) return false; // k比数字的数量还多
+    int sum = 0;
+    for (int v : nums) sum += v; 
+    if (sum % k != 0) return false; //总和不能被k整除，那显然不能等分
+
+    int[] bucket = new int[k]; // k 个桶（集合），记录每个桶装的数字之和
+    int target = sum / k; // 理论上每个桶（集合）中数字的和
+    
+    return backtrack(nums, 0, bucket, target); // 穷举，看看 nums 是否能划分成 k 个和为 target 的子集
+}
+
+boolean backtrack(int[] nums, int index, int[] bucket, int target) { // 递归穷举 nums 中的每个数字
+    if (index == nums.length) { // 当index已经来到最后一位之后
+        for (int i = 0; i < bucket.length; i++) {  // 检查所有桶的数字之和是否都等于 target
+            if (bucket[i] != target) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    for (int i = 0; i < bucket.length; i++) { // 遍历可能装入的桶
+        if (bucket[i] + nums[index] > target) { // 要是在装就溢出来了，跳过
+            continue;
+        }
+        bucket[i] += nums[index]; // 选择把 nums[index] 装入 bucket[i]
+        if (backtrack(nums, index + 1, bucket, target)) { // 穷举下一个数字（位于index + 1）的选择，target还是那个target
+            return true;
+        }
+        bucket[i] -= nums[index]; // 撤销选择
+    }
+    return false; // nums[index] 装入哪个桶都不行
+}
+
+```
+
