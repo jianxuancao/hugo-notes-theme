@@ -126,3 +126,49 @@ boolean isValid(List<String> board, int row, int col) {/* 是否可以在 board[
     return true;
 }
 ```
+
+### [37. 解数独 - 力扣（LeetCode）](https://leetcode.cn/problems/sudoku-solver/)
+
+```Java
+public void solveSudoku(char[][] board) {
+    backtrack(board, 0, 0);
+}
+
+boolean backtrack(char[][]board, int i, int j){
+    //顺序很重要，先判断是不是出界了，不然判断有没有值会indexoutofbound
+    if (j == 9) { // 穷举到最后一列的话就换到下一行重新开始。
+        return backtrack(board, i + 1, 0);
+    }
+    if (i == 9) { // 找到一个可行解，触发 base case
+        return true;
+    }
+    if(board[i][j] ！= '.'){
+        return backtrack(board, i, j + 1); //已经有值，不必穷尽，回溯下一个
+    }
+
+    for (char ch = '1'; ch <= '9'; ch++) {
+        if (!isValid(board, i, j, ch))// 如果遇到不合法的数字，就跳过
+            continue;
+
+        board[i][j] = ch; //选择
+
+        if (backtrack(board, i, j + 1)) {// 如果找到一个可行解，立即结束
+            return true;
+        }
+
+        board[i][j] = '.'; //撤销选择
+    }    
+    return false;// 穷举完 1~9，依然没有找到可行解，此路不通
+}
+
+boolean isValid(char[][] board, int r, int c, char n) {// 判断 board[i][j] 是否可以填入 n
+    for (int i = 0; i < 9; i++) {        
+        if (board[r][i] == n) return false;// 判断行是否存在重复
+        if (board[i][c] == n) return false;// 判断列是否存在重复
+        if (board[(r/3)*3 + i/3][(c/3)*3 + i%3] == n)// 判断 3 x 3 方框是否存在重复
+            return false;
+    }
+    return true;
+}
+```
+
