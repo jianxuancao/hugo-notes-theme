@@ -17,8 +17,7 @@ BFS空间复杂度高，DFS空间复杂度较低。
 ### 框架
 
 ```java
-// 计算从起点 start 到终点 target 的最近距离
-int BFS(Node start, Node target) {
+int BFS(Node start, Node target) { // 计算从起点 start 到终点 target 的最近距离
     Queue<Node> q; // 核心数据结构
     Set<Node> visited; // 避免走回头路
     
@@ -26,24 +25,21 @@ int BFS(Node start, Node target) {
     visited.add(start);
     int step = 0; // 记录扩散的步数
 
-    while (q not empty) {
+    while (q not empty) { // 遍历队列
         int sz = q.size();
-        /* 将当前队列中的所有节点向四周扩散 */
-        for (int i = 0; i < sz; i++) {
+        for (int i = 0; i < sz; i++) { /* 将当前队列中的所有节点向四周扩散 */
             Node cur = q.poll();
-            /* 划重点：这里判断是否到达终点 */
-            if (cur is target)
+            if (cur is target)  /* 划重点：这里判断是否到达终点 */
                 return step;
-            /* 将 cur 的相邻节点加入队列 */
-            for (Node x : cur.adj()) {
+           
+            for (Node x : cur.adj()) {  /* 将 cur 的相邻节点加入队列 */
                 if (x not in visited) {
                     q.offer(x);
                     visited.add(x);
                 }
             }
         }
-        /* 划重点：更新步数在这里 */
-        step++;
+        step++;        /* 划重点：更新步数在这里 */
     }
 }
 
