@@ -172,3 +172,32 @@ boolean isValid(char[][] board, int r, int c, char n) {// 判断 board[i][j] 是
 }
 ```
 
+### [22. 括号生成 - 力扣（LeetCode）](https://leetcode.cn/problems/generate-parentheses/)
+
+```Java
+public List<String> generateParenthesis(int n) {
+    List<String> result = new ArrayList<>();
+    if (n == 0) return result;
+    String track = "";
+    backtrack(track, n, n, result);
+    return result;
+}
+
+void backtrack(String track, int left, int right, List<String>result){
+    if(right < left || right<0 || left<0){ // error case
+        return;
+    }
+    if (left == 0 && right == 0){
+        result.add(track);
+        return;
+    }
+        
+    track = track + "(";
+    backtrack(track, left - 1, right, result); 
+    track = track.substring(0, track.length()-1);
+    track = track + ")";
+    backtrack(track, left, right - 1, result); 
+    track = track.substring(0, track.length()-1);
+}
+```
+
