@@ -15,20 +15,21 @@ toc: True
 随着循环继续，新的最小值放在排好的末尾
 
 ```java
-public int[] selectionSort(int[] arr){
-	int temp, minPointer = 0;
-	for(int i = 0; i < int.length - 1; i++){ //-1 是为了给下一个for循环留出最后一位的比较空间
-		minPointer = i;
-		for (int j = i + 1; j < arr.length; j++){
-			if(arr[minPointer]>arr[j]){
-				min = j;
-			}
-		}
-		if(min != i){
-			temp = arr[i];
-			arr[i] = arr[minPointer];
-			arr[minPointer] = temp;
-		}
-	}
+static int[] selectionSort(int[] input){
+    int min, minIndex = 0;
+    for (int i = 0 ; i < input.length; i++){
+        min = input[i];
+        minIndex = i;
+        for (int j = i ; j < input.length; j++){
+            if(input[j] < min){
+                min = input[j];
+                minIndex = j;
+            }
+        }
+        int temp = input[minIndex];
+        input[minIndex] = input[i];
+        input[i] = temp;
+    }
+    return input;
 }
 ```
