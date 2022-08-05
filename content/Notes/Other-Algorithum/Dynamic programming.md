@@ -311,11 +311,12 @@ public int maxSubArray(int[] nums) {
     if (nums.length == 0) return 0;
 
     int[] dp = new int[nums.length];  // 定义：dp[i] 记录以 nums[i] 为结尾的「最大子数组和」
-    dp[0] = nums[0];  // base case
+    dp[0] = nums[0];  // base case，以nums[0] 为结尾的连续数组的和自然是nums[0]本身，因为其前面没有东西了
 
     for(int i = 1; i < nums.length; i++){
         dp[i] = Math.max(dp[i-1] + nums[i], nums[i]);
     }
+    
     int res = Integer.MIN_VALUE;
     for(int cur : dp){
         res = Math.max(res, cur);
@@ -408,10 +409,11 @@ int dp(int[] nums, int start){
 
     return result;
 }
+```
 
+```Java
 int rob(int[] nums) {  //自底向上循环的方法
     int n = nums.length;
-    // base case: dp[n] = 0
     int[] dp = new int[n + 2];
     for (int i = n - 1; i >= 0; i--) {
         dp[i] = Math.max(dp[i + 1], nums[i] + dp[i + 2]);
