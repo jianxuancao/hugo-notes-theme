@@ -11,6 +11,12 @@ type: book # Do not modify.
 toc: True
 
 ---
+
+
+<img src="https://labuladong.github.io/algo/images/%e4%ba%8c%e5%8f%89%e6%a0%91%e7%b3%bb%e5%88%972/2.jpeg" style="zoom:33%;" />
+
+<img src="https://labuladong.github.io/algo/images/%e4%ba%8c%e5%8f%89%e6%a0%91%e7%b3%bb%e5%88%972/6.jpeg" alt="https://labuladong.github.io/algo/images/%e4%ba%8c%e5%8f%89%e6%a0%91%e7%b3%bb%e5%88%972/6.jpeg" style="zoom:33%;" />
+
 这里是深度优先遍历，[广度优先遍历看这个Note]({{<relref "../Other-Algorithum/BFS.md">}})
 
 

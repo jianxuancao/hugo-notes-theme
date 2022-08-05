@@ -29,6 +29,8 @@ def backtrack(路径, 选择列表):
 
 这个题其实就是回溯算法的基本框架
 
+<img src="https://labuladong.github.io/algo/images/backtracking/2.jpg" style="zoom:33%;" />
+
 ```Java
 List<List<Integer>> res = new LinkedList<>();
 
@@ -75,6 +77,7 @@ public List<List<String>> solveNQueens(int n) {
     for(int i = 0; i < n; i++){
         originalboard.add(".".repeat(n)); // . means no queen 
     }
+    
     backtrack(originalboard, 0); //从第0行开始
     return res;
 }
@@ -195,6 +198,7 @@ void backtrack(String track, int left, int right, List<String>result){
     track = track + "(";
     backtrack(track, left - 1, right, result); 
     track = track.substring(0, track.length()-1);
+    
     track = track + ")";
     backtrack(track, left, right - 1, result); 
     track = track.substring(0, track.length()-1);

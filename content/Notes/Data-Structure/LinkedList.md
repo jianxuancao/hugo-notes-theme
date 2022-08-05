@@ -11,7 +11,9 @@ type: book # Do not modify.
 toc: True
 ---
 
-### [**reverse list**]()
+### [206. 反转链表 - 力扣（LeetCode）](https://leetcode.cn/problems/reverse-linked-list/)
+
+<img src="https://labuladong.github.io/algo/images/%e5%8f%8d%e8%bd%ac%e9%93%be%e8%a1%a8/2.jpg" style="zoom:33%;" />
 
 ```Java
 public ListNode reverseList(ListNode head) {
@@ -84,6 +86,8 @@ ListNode reverse(ListNode a, ListNode b) {
 
 ### [**merge-two-sorted-lists**](https://leetcode.cn/problems/merge-two-sorted-lists/)
 
+<img src="https://labuladong.github.io/algo/images/%e9%93%be%e8%a1%a8%e6%8a%80%e5%b7%a7/1.gif" style="zoom:50%;" />
+
 ```Java
 public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
     // 虚拟头结点
@@ -117,6 +121,8 @@ public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 ```
 
 ### [**基于一个节点按大小分割**](https://leetcode.cn/problems/partition-list/)
+
+一个链表中储存的元素大小都小于 `x`，另一个链表中的元素都大于等于 `x`，最后再把这两条链表接到一起
 
 ```Java
 public ListNode partition(ListNode head, int x) {
@@ -177,7 +183,6 @@ public ListNode mergeKLists(ListNode[] lists) {
 ### [**返回链表的倒数第 k 个节点**]()
 
 ```Java
-// 
 ListNode findFromEnd(ListNode head, int k) {
     ListNode p1 = head;
     // p1 先走 k 步
@@ -238,8 +243,8 @@ public ListNode middleNode(ListNode head) {
 
 ```Java
 public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-    int lenA = 0, lenB = 0;
     // 计算两条链表的长度
+    int lenA = 0, lenB = 0;
     for (ListNode p1 = headA; p1 != null; p1 = p1.next) { lenA++; }
     for (ListNode p2 = headB; p2 != null; p2 = p2.next) { lenB++; }
 
@@ -337,11 +342,11 @@ boolean traverse(ListNode right){
 		return true;
 	}
 
-	boolean result = traverse(right.next);
+	boolean result = traverse(right.next); //递归
 
-	result = result && (right.val == left.val);
+	result = result && (right.val == left.val); //目前最右跟最左是不是一样，
 
-	left = left.next;
+	left = left.next; // 比较完成，左边进一，比较倒数第二个以此类推
 	return result;
 }
 ```

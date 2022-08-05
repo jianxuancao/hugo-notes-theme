@@ -21,13 +21,13 @@ public int fib(int n) {
 }
 
 int helper (int [] memo, int n){
-    if(n == 0){
+    if(n == 0){  // base case
         return 0;
     }else if (n == 1 || n == 2){
         return 1;
     }
     
-    if(memo[n] != 0){
+    if(memo[n] != 0){  //查memo
         return memo[n];
     }
 
@@ -47,7 +47,7 @@ public int fib(int n) {
     // base case
     dp[0] = 0; dp[1] = 1;
 
-    for(int i = 2, i <= n; i++){
+    for(int i = 2; i <= n; i++){
         dp[i] = dp[i - 1] + dp[i -2];
     }
 
@@ -83,13 +83,13 @@ int[] memo;
 
 int coinChange(int[] coins, int amount) {
     memo = new int[amount + 1];
-    Arrays.fill(memo, -666);    //备忘录初始化为一个不会被取到的特殊值，代表还未被计算
+    Arrays.fill(memo, -666);    // 备忘录初始化为一个不会被取到的特殊值，代表还未被计算
     return dp(coins, amount);
 }
 
 int dp(int[] coins, int amount) {
-    if (amount == 0) return 0;
-    if (amount < 0) return -1;
+    if (amount == 0) return 0; 
+    if (amount < 0) return -1; // 特殊情况
  
     if (memo[amount] != -666)   //如果不是-666说明计算重复了，直接返回memo内容
         return memo[amount];
@@ -130,11 +130,11 @@ int coinChange(int[] coins, int amount) {
 int lengthOfLIS(int[] nums) {
     int[] dp = new int[nums.length];// dp[i] 表示以 nums[i] 这个数结尾的最长递增子序列的长度
     
-    Arrays.fill(dp, 1); // base case：dp数组都为，因为每一个元素都起码是一个递增序列
-    for (int i = 0; i < nums.length; i++) {
+    Arrays.fill(dp, 1); // base case：dp数组都为 1，因为每一个元素自己都起码算是一个递增序列
+    for (int i = 0; i < nums.length; i++) { // 以每一个元素为开始
         for (int j = 0; j < i; j++) {
             if (nums[i] > nums[j]) // 找出每一个小于当前的前序数
-                dp[i] = Math.max(dp[i], dp[j] + 1); //去其对应的dp数字里查出对应位置的的最长序列长度
+                dp[i] = Math.max(dp[i], dp[j] + 1); // 去其对应的dp数字里查出对应位置的的最长序列长度
         }
     }
     
@@ -178,35 +178,43 @@ int lengthOfLIS(int[] nums) {
 ### [**最小编辑距离**](https://leetcode.cn/problems/edit-distance/)
 
 ```Java
-int minDistance(String s1, String s2) {
-    int m = s1.length(), n = s2.length(); 
-    int[][] dp = new int[m + 1][n + 1]; //s1[0..i] 和 s2[0..j] 的最小编辑距离是 dp[i+1][j+1]
+// 备忘录
+int[][] memo;
     
-    // base case 
-    for (int i = 1; i <= m; i++)
-        dp[i][0] = i;
-    for (int j = 1; j <= n; j++)
-        dp[0][j] = j;
-    
-    for (int i = 1; i <= m; i++) { // 自底向上求解（从短到长）
-        for (int j = 1; j <= n; j++) {
-            if (s1.charAt(i-1) == s2.charAt(j-1)) {
-                dp[i][j] = dp[i - 1][j - 1];
-            } else {
-                dp[i][j] = min(
-                    dp[i - 1][j] + 1, // 删除
-                    dp[i][j - 1] + 1,  // 插入
-                    dp[i - 1][j - 1] + 1 // 替换
-                );
-            }
-        }
+public int minDistance(String s1, String s2) {
+    int m = s1.length(), n = s2.length();
+    // 备忘录初始化为特殊值，代表还未计算
+    memo = new int[m][n];
+    for (int[] row : memo) {
+        Arrays.fill(row, -1);
     }
-    return dp[m][n];
+    return dp(s1, m - 1, s2, n - 1);
+}
+
+int dp(String s1, int i, String s2, int j) {
+    if (i == -1) return j + 1;
+    if (j == -1) return i + 1;
+    // 查备忘录，避免重叠子问题
+    if (memo[i][j] != -1) {
+        return memo[i][j];
+    }
+    // 状态转移，结果存入备忘录
+    if (s1.charAt(i) == s2.charAt(j)) {
+        memo[i][j] = dp(s1, i - 1, s2, j - 1);
+    } else {
+        memo[i][j] =  min(
+            dp(s1, i, s2, j - 1) + 1,
+            dp(s1, i - 1, s2, j) + 1,
+            dp(s1, i - 1, s2, j - 1) + 1
+        );
+    }
+    return memo[i][j];
 }
 
 int min(int a, int b, int c) {
     return Math.min(a, Math.min(b, c));
 }
+
 ```
 
 ### [**最小下降路径（正下，左下，右下）**](https://leetcode.cn/problems/minimum-falling-path-sum/)
@@ -221,7 +229,7 @@ int minFallingPathSum(int[][] matrix) {
         Arrays.fill(memo[i], 66666);// 备忘录里的值初始化为 66666
     }
     
-    for (int j = 0; j < n; j++) {// 终点可能在 matrix[n-1] 的任意一列,所以要尝试最后一行每一个的最小距离
+    for (int j = 0; j < n; j++) {// 终点可能在 matrix最底部[n-1] 的任意一列,所以要尝试最后一行每一个的最小距离
         res = Math.min(res, dp(matrix, n - 1, j));
     }
     return res;
@@ -237,11 +245,11 @@ int dp(int[][] matrix, int i, int j) {
         return 99999;
     }
     
-    if (i == 0) { // base case,i=0代表已经回到了二维数组的最上面一行，其最小距离就是他自己
+    if (i == 0) { // base case,i=0 代表已经回到了二维数组的最上面一行，其最小距离就是他自己
         return matrix[0][j];
     }
 
-    if (memo[i][j] != 66666) {
+    if (memo[i][j] != 66666) { // memo节省运算时间
         return memo[i][j];
     }
     
@@ -261,7 +269,7 @@ int min(int a, int b, int c) {
 
 ### [**最小下降路径（只有正下和右下）**](https://leetcode.cn/problems/minimum-path-sum/)
 
-遇上一题几乎一样，改一下dp的可能性就完了
+上一题一样，改一下dp的可能性就完了
 
 ```Java
 int[][] memo;
