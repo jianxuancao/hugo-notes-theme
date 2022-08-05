@@ -553,7 +553,7 @@ class Solution {
 }
 ```
 
-### [**田忌赛马**]()
+### **田忌赛马**
 
 ```Java
 int[] advantageCount(int[] nums1, int[] nums2) {

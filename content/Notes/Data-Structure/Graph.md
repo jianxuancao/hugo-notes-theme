@@ -11,35 +11,7 @@ type: book # Do not modify.
 toc: True
 ---
 图就像一个多叉树
-邻接表，好处是占用的空间少,但无法快速判断两个节点是否相邻。对于邻接矩阵，我只要看[x][y]是多少就行了
-
-
-```Java
-/* 二叉树遍历框架 */
-void traverse(TreeNode root) {
-    if (root == null) return;
-    traverse(root.left);
-    traverse(root.right);
-}
-
-/* 多叉树遍历框架 */
-void traverse(Node root) {
-    if (root == null) return;
-    for (Node child : root.children)
-        traverse(child);
-}
-
-/* 图遍历框架 */
-boolean[] visited;
-void traverse(Graph graph, int v) {
-    // 防止走回头路进入死循环
-    if (visited[v]) return;
-    // 前序遍历位置，标记节点 v 已访问
-    visited[v] = true;
-    for (Vertex neighbor : graph.neighbors(v))
-        traverse(graph, neighbor);
-}
-```
+邻接表，好处是占用的空间少,但无法快速判断两个节点是否相邻。对于邻接矩阵，我只要看[x] [y]是多少就行了
 
 
 > **一般图**
@@ -87,56 +59,27 @@ void traverse(Graph graph, int s) { //s初始为0，代表起始节点
 ### [**节点0到节点n-1的所有可能路径**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 
 ```Java
-List<List<Integer>> res = new LinkedList<>();// 记录所有路径
-    
+List<List<Integer>> result = new LinkedList<>();	// 记录所有路径
+
 public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-    LinkedList<Integer> path = new LinkedList<>();//记录过程中经过的路径
-    traverse(graph, 0, path);
-    return res;
-}
-
-void traverse(int[][] graph, int s, LinkedList<Integer> path) {/* 图的遍历框架 */
-    path.addLast(s);// 添加节点 s 到路径
-
-    int n = graph.length;
-    if (s == n - 1) {// 到达终点
-        res.add(new LinkedList<>(path)); //一条路径完成，添加至result
-        path.removeLast();//由于一条路径完成，path需要清除这最后一步，为上一个节点的别的可能出路做好准备
-        return;
-    }
-
-    for (int v : graph[s]) {// 递归每个相邻节点
-        traverse(graph, v, path);
-    }
-    
-    path.removeLast(); // 从路径移出节点 s
-}
-
-
-```
-
-### [**无环图中所有可能的路径**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
-
-```Java
-List<List<Integer>> result = new LinkedList<>();// 记录所有路径
-public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-    LinkedList<Integer> path = new LinkedList<>();// 维护递归过程中经过的路径
-    traverse(graph, 0, path);
+    LinkedList<Integer> path = new LinkedList<>();	// 维护递归过程中经过的路径
+    traverse(graph, 0, path); 						// 0就是起点的node值
     return result;
 }
 
 void traverse(int[][] graph, int s, LinkedList<Integer> path) {
     path.addLast(s);
-    if (s == graph.length - 1) {// 到达终点
+    if (s == graph.length - 1) {	// 到达终点
         result.add(new LinkedList<>(path));
         path.removeLast();
         return;
     }
-    for (int v : graph[s]) {// 递归每个相邻节点
+    for (int v : graph[s]) {		// 递归每个相邻节点（DFS）
         traverse(graph, v, path);
     }
     path.removeLast();
 }
+
 ```
 
 ### [**环检测算法(课程表)(DFS)**](https://leetcode.cn/problems/course-schedule/)
@@ -145,15 +88,15 @@ void traverse(int[][] graph, int s, LinkedList<Integer> path) {
 class Solution {
     boolean[] onPath;// 记录一次递归堆栈中的节点
     boolean[] visited;// 记录遍历过的节点，防止走回头路
-    boolean hasCycle = false;// 记录图中是否有环
+    boolean hasCycle = false;// 记录图中是否有环 
 
-    boolean canFinish(int numCourses, int[][] prerequisites) {
+    boolean canFinish(int numCourses, int[][] prerequisites) { //如果有环证明出现了鸡生蛋，蛋生鸡的环
         List<Integer>[] graph = new LinkedList[numCourses];  //建立图的邻接表（一维：每一科）（二维：每一科的前置要求）
-        //如果有环证明出现了鸡生蛋，蛋生鸡的环
-        for (int i = 0; i < numCourses; i++) {
+        
+        for (int i = 0; i < numCourses; i++) { //创建一个图，图的第一维度是科目，每个科目都有以来的项目（图的邻居）
             graph[i] = new LinkedList<>();
         }
-        for (int[] edge : prerequisites) {
+        for (int[] edge : prerequisites) { // 给每个课程添加邻居
             graph[edge[1]].add(edge[0]); // 修完课程 from 才能修课程 to
         }
         
@@ -194,7 +137,7 @@ boolean[] visited, onPath;
 
 public int[] findOrder(int numCourses, int[][] prerequisites) {
     List<Integer>[] graph = new LinkedList[numCourses];  //建立图的邻接表（一维：每一科）（二维：每一科的前置要求）
-    //如果有环证明出现了鸡生蛋，蛋生鸡的环
+
     for (int i = 0; i < numCourses; i++) {
         graph[i] = new LinkedList<>();
     }
