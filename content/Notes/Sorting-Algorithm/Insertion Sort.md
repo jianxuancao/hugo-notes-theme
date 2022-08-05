@@ -1,4 +1,4 @@
----
+ ---
 # Title, summary, and page position.
 title: Insertion Sort
 linktitle: Insertion Sort
@@ -16,11 +16,11 @@ toc: True
 复杂度O( n2 )
 
 ```java
-public int[] insertionSort(int[] arr){
+static int[] insertionSort(int[] arr){
 	for (int i = 0; i < arr.length; i++) {
 		int val = arr[i];
 		int pos = i;
-		while(pos > 0 && val < arr[pos-1]){
+		while(pos > 0 && val < arr[pos-1]){ //不停与前一位交换直到他的前一位比他小或者相等
 			arr[pos] = arr[pos-1];
 			pos--;
 		}
