@@ -124,7 +124,7 @@ boolean isPalindrome(String s) {
 
 ### [**最长回文子串**](https://leetcode.cn/problems/longest-palindromic-substring/)
 
-向两边展开是合理的思路
+向两边展开是合理的思路，每一位都尝试一下向两侧展开，寻找出最长的一次结果
 
 ```Java
 public String longestPalindrome(String s) {
@@ -178,8 +178,8 @@ void slidingWindow(String s) {
 public String minWindow(String s, String t) {
     HashMap<Character, Integer> window= new HashMap<>();
     HashMap<Character, Integer> need= new HashMap<>(); 
-    // store target, <char, num of occrance of that char>
-    for (int i = 0; i < t.length(); i++) {
+    
+    for (int i = 0; i < t.length(); i++) {  // store target, <char, num of occrance of that char>
         char c = t.charAt(i);
         need.put(c, need.getOrDefault(c, 0) + 1);
     }
@@ -191,9 +191,10 @@ public String minWindow(String s, String t) {
         char c = s.charAt(right);
         right++;
         
-        if (need.containsKey(c)) { // 进行窗口内数据的一系列更新
-            window.put(c, window.getOrDefault(c, 0) + 1); // 滑动窗口更新
-            if (window.get(c) == need.get(c)){ //字符对应上了就加一个
+        // 进行窗口内数据的一系列更新
+        if (need.containsKey(c)) { //如果当前字符是需要的
+            window.put(c, window.getOrDefault(c, 0) + 1); // 滑动窗口更新，储存该字符出现的次数，如果window里没有，那默认值是0
+            if (window.get(c) == need.get(c)){ //字符出现的次数如果对应上了就加一个，如果需要aa（2次），而window.get(a)是1，那不加
                 valid++; 
             }
         }
@@ -306,11 +307,11 @@ public List<Integer> findAnagrams(String s, String p) {
             char d = s.charAt(left);
             left++;
             
-            if (need.containsKey(d)) { 
-                if (window.get(d) == need.get(d)){
+            if (need.containsKey(d)) { //如果缩小的一个字符是target的一部分
+                if (window.get(d) == need.get(d)){ // 出现次数更改后就不valid了
                     valid--;
                 }
-                window.put(d, window.get(d) - 1);
+                window.put(d, window.get(d) - 1); //减少一个出现次数
             }                    
         }
     }
@@ -355,11 +356,11 @@ public boolean checkInclusion(String t, String s) {
             char d = s.charAt(left);
             left++;
             
-            if (need.containsKey(d)) { 
-                if (window.get(d) == need.get(d)){
+            if (need.containsKey(d)) {   //如果缩小的一个字符是target的一部分
+                if (window.get(d) == need.get(d)){ // 出现次数更改后就不valid了
                     valid--;
                 }
-                window.put(d, window.get(d) - 1);
+                window.put(d, window.get(d) - 1); 
             }                    
         }
     }
@@ -371,28 +372,49 @@ public boolean checkInclusion(String t, String s) {
 ### [**找到所有字母排列**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 
 ```Java
-public int lengthOfLongestSubstring(String s) {
-    HashSet<Character> window = new HashSet<>();
+public List<Integer> findAnagrams(String s, String p) {
+    HashMap<Character, Integer> window = new HashMap<>();
+    HashMap<Character, Integer> need = new HashMap<>(); 
+    // store target, <char, num of occrance of that char>
+    for (int i = 0; i < p.length(); i++) {
+        char c = p.charAt(i);
+        need.put(c, need.getOrDefault(c, 0) + 1);
+    }
     int left = 0, right = 0;
-    int result = 0;
+    int valid = 0; // 合规字符数量
+    List<Integer> ans = new ArrayList<Integer>();
     while (right < s.length()) {
         char c = s.charAt(right);
         right++;
-       
-        if (window.contains(c)) { //如果重复出现,收紧左侧指针
-            left++;//左进一
-        }else{
-            window.add(c); //加入window
+        // 计算window现在有几个符合条件的char
+        //因为每次只添加一个char，比较一次就行
+        if (need.containsKey(c)) { //如果是需要的，加入window里
+            window.put(c, window.getOrDefault(c, 0) + 1); 
+            // 滑动窗口更新
+            if (window.get(c).equals(need.get(c))){ // 同样字符出现次数也是考虑标准
+                valid++; //字符和出现次数对应上了就加一个
+            }
         }
-
-        result = Math.max(result, right - left);
+        if (right - left >= p.length()) { // 如果全部t都包含了(valid等于size)，开始缩小窗口
+            if (valid == need.size()) { // 如果有更小的，更新指针
+                ans.add(left); //保存指针
+            }
+            char d = s.charAt(left);
+            left++;
+            
+            if (need.containsKey(d)) { 
+                if (window.get(d) == need.get(d)){
+                    valid--;
+                }
+                window.put(d, window.get(d) - 1);
+            }                    
+        }
     }
-
-    return result;
+    return ans;
 }
 ```
 
-### [**最长无重复子串**](https://leetcode.cn/problems/longest-substring-without-repeating-characters/submissions/)
+### [3. 无重复字符的最长子串 - 力扣（LeetCode）](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
 
 ```Java
 public int lengthOfLongestSubstring(String s) {
@@ -437,7 +459,7 @@ public int search(int[] nums, int target) {
 }
 ```
 
-### [**左侧边界**]()
+### **左侧边界**
 
 ```Java
 int left_bound(int[] nums, int target) {
@@ -464,7 +486,7 @@ int left_bound(int[] nums, int target) {
 }
 ```
 
-### [**右侧边界**]()
+### **右侧边界**
 
 ```Java
 int right_bound(int[] nums, int target) {
@@ -486,7 +508,7 @@ int right_bound(int[] nums, int target) {
 }
 ```
 
-### [**按权重随机选择**](https://leetcode.cn/problems/random-pick-with-weight/submissions/)
+### [**按权重随机选择**](https://leetcode.cn/problems/random-pick-with-weight)
 
 ```Java
 class Solution {
