@@ -93,6 +93,7 @@ int[] twoSum(int[] nums, int target) {  //左右指针
 ```Java
 public void reverseString(char[] s) {
 	int left = 0, right = s.length - 1;
+    //左右分别从数组两端出发，互相交换，直到两个指针碰面
 	while(left < right){
 		char leftTemp = s[left];
 		s[left] = s[right];
