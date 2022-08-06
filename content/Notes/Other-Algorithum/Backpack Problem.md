@@ -40,8 +40,8 @@ int knapsack(int W, int N, int[] wt, int[] val) {
 
 ### [**完全背包**](https://leetcode.cn/problems/coin-change-2/submissions/)
 
-如果不把第 i 个物品装入背包，就是不使用 coins[i-1] 这个面值的硬币，那么凑出面额 j 的方法数 dp[i][j] 应该等于 dp[i-1][j]，继承之前的结果。
-如果把第 i 个物品装入背包，就是使用 coins[i-1] 这个面值的硬币，那么 dp[i][j] 应该等于 dp[i][j-coins[i-1]]，也就是如果使用这个面值，那么就应该关注如何凑出金额 j - coins[i-1]。（比如说，你想用面值为 2 的硬币凑出 5，那么如果你知道了凑出 3 的方法，再加上一枚 2 的硬币，就可以凑出 5。）
+如果不把第 i 个物品装入背包，就是不使用 coins[i-1] 这个面值的硬币，那么凑出面额 j 的方法数 dp[i] [j] 应该等于 dp[i-1] [j]，继承之前的结果。
+如果把第 i 个物品装入背包，就是使用 coins[i-1] 这个面值的硬币，那么 dp[i] [j] 应该等于 dp[i] [j-coins[i-1]]，也就是如果使用这个面值，那么就应该关注如何凑出金额 j - coins[i-1]。（比如说，你想用面值为 2 的硬币凑出 5，那么如果你知道了凑出 3 的方法，再加上一枚 2 的硬币，就可以凑出 5。）
 
 ```Java
 public int change(int amount, int[] coins) {
