@@ -65,7 +65,7 @@ public int fib(int n) {
     if (n == 0 || n == 1) return n;
     int n_1 = 0, n_2 = 1;
     
-    for(int i = 2, i <= n; i++){
+    for(int i = 2; i <= n; i++){
         int n_current = n_1 + n_2;
         n_1 = n_2;
         n_2 = n_current; 
@@ -97,7 +97,7 @@ int dp(int[] coins, int amount) {
 
     int res = Integer.MAX_VALUE;
     for (int coin : coins) {
-        int subProblem = dp(coins, amount - coin);  // 计算子问题：当选择了一个面值的硬币后，剩下的面值怎么用最少的硬币组合
+        int subProblem = dp(coins, amount - coin);  // 子问题：选择了一个面值的硬币后，剩下的面值怎么用最少的硬币组合
         if (subProblem == -1) continue;              // 无解，跳过
         res = Math.min(res, subProblem + 1);        // 选择最优解，+1是因为当前这个foreach的coin也要算一个位置的
     }
