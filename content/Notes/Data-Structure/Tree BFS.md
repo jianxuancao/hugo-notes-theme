@@ -1,7 +1,7 @@
 ---
 # Title, summary, and page position.
-title: BFS
-linktitle: BFS
+title: Tree BFS
+linktitle: Tree BFS
 summary: Notes on BFS.
 weight: 2
 
