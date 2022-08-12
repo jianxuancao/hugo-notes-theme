@@ -22,7 +22,7 @@ public ListNode reverseList(ListNode head) {
     }
     
     ListNode last = reverseList(head.next); 
-    // 此时head的next是逆链表的尾，但尾的next是null，所以把head.next.next(tail) = head, 再把head.next换成null，反转就完成了
+    // 此时head的next是逆链表的尾 (2)，但尾(2)的next是null，所以把head.next.next(tail) = head, 再把head.next换成null，反转就完成了
     head.next.next = head;
     head.next = null;
 

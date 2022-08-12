@@ -17,7 +17,7 @@ toc: True
 
 <img src="https://labuladong.github.io/algo/images/%e4%ba%8c%e5%8f%89%e6%a0%91%e7%b3%bb%e5%88%972/6.jpeg" alt="https://labuladong.github.io/algo/images/%e4%ba%8c%e5%8f%89%e6%a0%91%e7%b3%bb%e5%88%972/6.jpeg" style="zoom:33%;" />
 
-这里是深度优先遍历，[广度优先遍历看这个Note]({{<relref "../Other-Algorithum/BFS.md">}})
+这里是深度优先遍历，[广度优先遍历看这个Note]({{<relref "Tree BFS.md">}})
 
 
 * 一棵二叉树的前序遍历结果 = 根节点 + 左子树的前序遍历结果 + 右子树的前序遍历结果

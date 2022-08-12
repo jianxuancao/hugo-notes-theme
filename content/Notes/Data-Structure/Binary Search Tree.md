@@ -211,7 +211,7 @@ int count(int lo, int hi) {  // [lo, hi]区间的BST个数
 
 ### [**穷举可能性**](https://leetcode.cn/problems/unique-binary-search-trees-ii/)
 
-```Java
+```arrayJava
 List<TreeNode> generateTrees(int n){
     return build(1, n);
 }
