@@ -47,13 +47,13 @@ int knapsack(int W, int N, int[] wt, int[] val) {
 public int change(int amount, int[] coins) {
     int[][] dp = new int[coins.length + 1][amount + 1]; //前i个物品，当背包容量为 j 时，有几种方法可以装满背包。
 
-    for(int i = 0; i <= coins.length; i++){ //base case，i = 0，也就是不用任何硬币，显然什么也凑不出来，Java默认就是0，所以不用写出来
+    for(int i = 0; i <= coins.length; i++){ //base case，i = 0，不用任何硬币，什么也凑不出来，Java默认就是0，所以不用写出来
         coins[i][0] = 1; //j = 0 代表需要凑出的目标金额为 0，那么什么都不做就是唯一的一种凑法
     }
 
     for (int i = 1; i <= coins.length; i++) { //遍历所有硬币
         for (int w = 1; w <= amount; w++) { //遍历所有的剩余容量
-            if (j - coins[i-1] >= 0)
+            if (j - coins[i-1] >= 0) 
                 dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i-1]];
             else 
                 dp[i][j] = dp[i - 1][j];
@@ -67,8 +67,8 @@ public int change(int amount, int[] coins) {
 ### [**分出两个一样值的子集**](https://leetcode.cn/problems/partition-equal-subset-sum/)
 
 首先既然是分割出一样的子集，那就相当于凑出一个正好是总价值一半的背包。
-dp数组[i][j]，在前i个物品中，能否凑出正好价值j。
-这里的状态转移逻辑是，如果不把第i个物品装入背包，则能否恰好装满背包，取决于上一个状态dp[i-1][j]，而如果把第i个物品装入背包，是否能够恰好装满背包，取决于dp[i-1][j-nums[i-1]]：你如果装了第 i 个物品，就要看背包的剩余重量 j - nums[i-1] 能否被恰好装满。
+dp数组[i] [j]，在前i个物品中，能否凑出正好价值j。
+这里的状态转移逻辑是，如果不把第i个物品装入背包，则能否恰好装满背包，取决于上一个状态dp[i-1] [j]，而如果把第i个物品装入背包，是否能够恰好装满背包，取决于dp[i - 1] [j - nums [i-1]]：你如果装了第 i 个物品，就要看背包的剩余重量 j - nums[i-1] 能否被恰好装满。
 
 ```Java
 public boolean canPartition(int[] nums) {
