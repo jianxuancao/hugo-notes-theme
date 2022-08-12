@@ -55,6 +55,7 @@ void backtrack(int[] nums, LinkedList<Integer> track, boolean[] used) {
         if (used[i]) { // nums[i] 已经在 track 中，跳过（比如1，2，下一个就不能是1或者2了）
             continue;
         }
+        
         track.add(nums[i]);// 做选择, 前序
         used[i] = true;
         
