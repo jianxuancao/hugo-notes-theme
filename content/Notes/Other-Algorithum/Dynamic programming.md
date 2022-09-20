@@ -206,9 +206,9 @@ int dp(String s1, int i, String s2, int j) {
         memo[i][j] = dp(s1, i - 1, s2, j - 1);
     } else {
         memo[i][j] =  min(
-            dp(s1, i, s2, j - 1) + 1,
-            dp(s1, i - 1, s2, j) + 1,
-            dp(s1, i - 1, s2, j - 1) + 1
+            dp(s1, i, s2, j - 1) + 1,  //插入
+            dp(s1, i - 1, s2, j) + 1,  //删除
+            dp(s1, i - 1, s2, j - 1) + 1  //交换
         );
     }
     return memo[i][j];
@@ -464,7 +464,7 @@ int dp(int[] nums, int start, int end, int[] memo) {
 
 ### [**二叉树抢劫**](https://leetcode.cn/problems/house-robber-iii/)
 
-```Java
+``` Java
 Map<TreeNode, Integer> memo = new HashMap<>();
 
 public int rob(TreeNode root) {
