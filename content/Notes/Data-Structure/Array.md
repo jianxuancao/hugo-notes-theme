@@ -11,7 +11,7 @@ type: book # Do not modify.
 toc: True
 ---
 
-### [**有序数组去重**](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
+### 有序数组去重 [**力扣**](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
 
 ```Java
 public int removeDuplicates(int[] nums) {
@@ -29,7 +29,7 @@ public int removeDuplicates(int[] nums) {
 }
 ```
 
-### [**移动0到末尾**](https://leetcode.cn/problems/move-zeroes/)
+### 移动0到末尾 [**力扣**](https://leetcode.cn/problems/move-zeroes/)
 
 ```Java
 public void moveZeroes(int[] nums) {
@@ -49,7 +49,7 @@ public void moveZeroes(int[] nums) {
 }
 ```
 
-### [**找出两数之和的位置**](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
+### 找出两数之和的位置 [**力扣**](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
 
 ```Java
 public int[] twoSum(int[] numbers, int target) {// 快慢指针
@@ -88,7 +88,7 @@ int[] twoSum(int[] nums, int target) {  //左右指针
 }
 ```
 
-### [**反转数组**](https://leetcode.cn/problems/reverse-string/)
+### 反转数组 [**力扣**](https://leetcode.cn/problems/reverse-string/)
 
 ```Java
 public void reverseString(char[] s) {
@@ -122,7 +122,7 @@ boolean isPalindrome(String s) {
 }
 ```
 
-### [**最长回文子串**](https://leetcode.cn/problems/longest-palindromic-substring/)
+### 最长回文子串 [**力扣**](https://leetcode.cn/problems/longest-palindromic-substring/)
 
 向两边展开是合理的思路，每一位都尝试一下向两侧展开，寻找出最长的一次结果
 
@@ -172,7 +172,7 @@ void slidingWindow(String s) {
 }
 ```
 
-### [**最小覆盖子串**](https://leetcode.cn/problems/minimum-window-substring/)
+### 最小覆盖子串 [**力扣**](https://leetcode.cn/problems/minimum-window-substring/)
 
 ```Java
 public String minWindow(String s, String t) {
@@ -222,7 +222,7 @@ public String minWindow(String s, String t) {
 
 ```
 
-### [**字符串的排列**](https://leetcode.cn/problems/permutation-in-string/)
+### 字符串的排列 [**力扣**](https://leetcode.cn/problems/permutation-in-string/)
 
 ```Java
 public boolean checkInclusion(String t, String s) {
@@ -271,7 +271,7 @@ public boolean checkInclusion(String t, String s) {
 }
 ```
 
-### [**找到所有字母排列**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
+### 找到所有字母排列 [**力扣**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 
 ```Java
 public List<Integer> findAnagrams(String s, String p) {
@@ -320,7 +320,7 @@ public List<Integer> findAnagrams(String s, String p) {
 }
 ```
 
-### [**字符串的排列**](https://leetcode.cn/problems/permutation-in-string/)
+### 字符串的排列 [**力扣**](https://leetcode.cn/problems/permutation-in-string/)
 
 ```Java
 public boolean checkInclusion(String t, String s) {
@@ -369,7 +369,7 @@ public boolean checkInclusion(String t, String s) {
 }
 ```
 
-### [**找到所有字母排列**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
+### 找到所有字母排列 [**力扣**](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 
 ```Java
 public List<Integer> findAnagrams(String s, String p) {
@@ -414,7 +414,7 @@ public List<Integer> findAnagrams(String s, String p) {
 }
 ```
 
-### [3. 无重复字符的最长子串 - 力扣（LeetCode）](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
+### 无重复字符的最长子串 [**力扣**](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
 
 ```Java
 public int lengthOfLongestSubstring(String s) {
@@ -438,7 +438,7 @@ public int lengthOfLongestSubstring(String s) {
 }
 ```
 
-### [**二分查找**](https://leetcode.cn/problems/binary-search/)
+### 二分查找 [**力扣**](https://leetcode.cn/problems/binary-search/)
 
 ```Java
 public int search(int[] nums, int target) {
@@ -508,7 +508,7 @@ int right_bound(int[] nums, int target) {
 }
 ```
 
-### [**按权重随机选择**](https://leetcode.cn/problems/random-pick-with-weight)
+### 按权重随机选择 [**力扣**](https://leetcode.cn/problems/random-pick-with-weight)
 
 ```Java
 class Solution {
