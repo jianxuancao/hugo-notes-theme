@@ -11,7 +11,9 @@ type: book # Do not modify.
 toc: True
 ---
 
-### [206. 反转链表 - 力扣（LeetCode）](https://leetcode.cn/problems/reverse-linked-list/)
+### 反转链表
+
+[力扣](https://leetcode.cn/problems/reverse-linked-list/)
 
 <img src="https://labuladong.github.io/algo/images/%e5%8f%8d%e8%bd%ac%e9%93%be%e8%a1%a8/2.jpg" style="zoom:33%;" />
 
@@ -30,7 +32,7 @@ public ListNode reverseList(ListNode head) {
 }
 ```
 
-### [**反转前N节点**]()
+### 反转前N节点
 
 ```Java
 ListNode postHead = null;
@@ -50,7 +52,9 @@ public ListNode reverseN(ListNode head, int count) {
 }
 ```
 
-### [**k个一组反转**](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
+### k个一组反转
+
+### [**力扣**](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
 
 ```Java
 public ListNode reverseKGroup(ListNode head, int k) {
@@ -84,7 +88,9 @@ ListNode reverse(ListNode a, ListNode b) {
 }
 ```
 
-### [**merge-two-sorted-lists**](https://leetcode.cn/problems/merge-two-sorted-lists/)
+### merge-two-sorted-lists
+
+[**力扣**](https://leetcode.cn/problems/merge-two-sorted-lists/)
 
 <img src="https://labuladong.github.io/algo/images/%e9%93%be%e8%a1%a8%e6%8a%80%e5%b7%a7/1.gif" style="zoom:50%;" />
 
@@ -120,7 +126,9 @@ public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 }
 ```
 
-### [**基于一个节点按大小分割**](https://leetcode.cn/problems/partition-list/)
+### 基于一个节点按大小分割
+
+[**力扣**](https://leetcode.cn/problems/partition-list/)
 
 一个链表中储存的元素大小都小于 `x`，另一个链表中的元素都大于等于 `x`，最后再把这两条链表接到一起
 
@@ -151,7 +159,9 @@ public ListNode partition(ListNode head, int x) {
 }
 ```
 
-### [**merge n个 sorted-lists**](https://leetcode.cn/problems/merge-k-sorted-lists/)
+### merge n个 sorted-lists
+
+[**力扣**](https://leetcode.cn/problems/merge-k-sorted-lists/)
 
 ```Java
 public ListNode mergeKLists(ListNode[] lists) {
@@ -180,7 +190,7 @@ public ListNode mergeKLists(ListNode[] lists) {
 }
 ```
 
-### [**返回链表的倒数第 k 个节点**]()
+### 返回链表的倒数第 k 个节点
 
 ```Java
 ListNode findFromEnd(ListNode head, int k) {
@@ -200,7 +210,9 @@ ListNode findFromEnd(ListNode head, int k) {
 }
 ```
 
-### [**remove-nth-node-from-end**](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
+### remove-nth-node-from-end
+
+[**力扣**](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
 
 用到了前面的返回倒数第n节点的逻辑
 
@@ -224,7 +236,9 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
 }
 ```
 
-### [**链表的中间点**](https://leetcode.cn/problems/middle-of-the-linked-list/)
+### 链表的中间点
+
+[**力扣**](https://leetcode.cn/problems/middle-of-the-linked-list/)
 
 快慢指针，快指针一次跳两个，这样就变相进行了len/2的操作
 
@@ -239,7 +253,9 @@ public ListNode middleNode(ListNode head) {
 }
 ```
 
-### [**两个链表是否相交**](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
+### 两个链表是否相交
+
+### [**力扣**](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
 
 ```Java
 public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
@@ -285,7 +301,7 @@ public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 }
 ```
 
-### [**链表是否包含环**]()
+### 链表是否包含环
 
 ```Java
 boolean hasCycle(ListNode head) { 
@@ -302,7 +318,7 @@ boolean hasCycle(ListNode head) {
 }
 ```
 
-### [**找到环的起点**]()
+### 找到环的起点
 
 ```Java
 ListNode detectCycle(ListNode head) {
@@ -327,7 +343,9 @@ ListNode detectCycle(ListNode head) {
 }
 ```
 
-### [**回文**](https://leetcode.cn/problems/palindrome-linked-list/)
+### 回文
+
+[**力扣**](https://leetcode.cn/problems/palindrome-linked-list/)
 
 还有一种方法是用快慢指针找到中点，然后反转左边的链表，再同步.next比较是否一致
 
