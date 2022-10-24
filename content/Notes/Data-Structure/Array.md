@@ -11,7 +11,9 @@ type: book # Do not modify.
 toc: True
 ---
 
-### 有序数组去重 [**力扣**](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
+### 有序数组去重
+
+[**力扣**](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
 
 ```Java
 public int removeDuplicates(int[] nums) {
