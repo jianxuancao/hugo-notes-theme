@@ -37,7 +37,7 @@ toc: True
 > int[][] matrix, [x][y] 记录 x 指向 y 的边的权重，0 表示不相邻
 > 对于一个link，[x][y]，[y][x]需要同时赋值，写成双向接通
 
-### [**DFS遍历图**]()
+### DFS遍历
 
 ```Java
 boolean[] visited;// 记录被遍历过的节点
@@ -56,7 +56,9 @@ void traverse(Graph graph, int s) { //s初始为0，代表起始节点
 
 ```
 
-### [**节点0到节点n-1的所有可能路径**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
+### 节点0到节点n-1的所有可能路径
+
+[**力扣**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 
 ```Java
 List<List<Integer>> result = new LinkedList<>();	// 记录所有路径
@@ -82,7 +84,9 @@ void traverse(int[][] graph, int s, LinkedList<Integer> path) {
 
 ```
 
-### [**环检测算法(课程表)(DFS)**](https://leetcode.cn/problems/course-schedule/)
+### 环检测算法(课程表)(DFS)
+
+[**力扣**](https://leetcode.cn/problems/course-schedule/)
 
 ```Java
 class Solution {
@@ -126,7 +130,9 @@ class Solution {
 }
 ```
 
-### [**输出依赖图（拓扑排序）**](https://leetcode.cn/problems/course-schedule-ii/)
+### 输出依赖图（拓扑排序）
+
+[**力扣**](https://leetcode.cn/problems/course-schedule-ii/)
 
 所谓拓扑排序就是把图拍扁拉直...
 
@@ -180,7 +186,7 @@ void traverse(List<Integer>[] graph, int s) {
 }
 ```
 
-### [**环检测算法（BFS 版本）**]()
+### 环检测算法（BFS 版本）
 
 1. 队列进行初始化后，从入度为 0 的节点开始加入队列
 2. 开始BFS，从队列中弹出一个节点，减少相邻节点的入度，同时将新产生的入度为 0 的节点加入队列
@@ -226,7 +232,7 @@ public boolean canFinish(int numCourses, int[][] prerequisites) {
 }
 ```
 
-### [**BFS拓扑排序**]()
+### BFS拓扑排序
 
 ```Java
 public int[] findOrder(int numCourses, int[][] prerequisites) {
@@ -275,7 +281,9 @@ public int[] findOrder(int numCourses, int[][] prerequisites) {
 }
 ```
 
-### [**判断二分图DFS**](https://leetcode.cn/problems/is-graph-bipartite/)
+### 判断二分图DFS
+
+[**力扣**](https://leetcode.cn/problems/is-graph-bipartite/)
 
 ```Java
 boolean ok = true;

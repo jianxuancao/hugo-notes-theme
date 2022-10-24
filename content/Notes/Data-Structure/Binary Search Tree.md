@@ -27,7 +27,7 @@ void BST(TreeNode root, int target) {
 }
 ```
 
-### [**遍历BST**]()
+### 遍历BST
 
 <img src="https://labuladong.github.io/algo/images/%e4%ba%8c%e5%8f%89%e6%a0%91%e6%94%b6%e5%ae%98/3.jpeg" style="zoom:33%;" />
 
@@ -51,7 +51,9 @@ void traverse(TreeNode root) {
 }
 ```
 
-### [**第k小的元素**](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/)
+### 第k小的元素
+
+[力扣](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/)
 
 ```Java
 int counter = 0; // 记录一个遍历counter
@@ -72,7 +74,9 @@ void traverse(TreeNode root, int k) { //中序遍历
 }
 ```
 
-### [**累加树**](https://leetcode.cn/problems/convert-bst-to-greater-tree/)
+### 累加树
+
+[**力扣**](https://leetcode.cn/problems/convert-bst-to-greater-tree/)
 
 ```Java
 TreeNode convertBST(TreeNode root) {
@@ -94,7 +98,9 @@ void traverse(TreeNode root) { //中序遍历
 }
 ```
 
-### [**是不是BST**](https://leetcode.cn/problems/validate-binary-search-tree/)
+### 是不是BST
+
+[**力扣**](https://leetcode.cn/problems/validate-binary-search-tree/)
 
 ```Java
 boolean isValidBST(TreeNode root){
@@ -115,7 +121,9 @@ boolean isValidBST(TreeNode root, TreeNode min, TreeNode max) {
 }
 ```
 
-### [**搜索二叉树**](https://leetcode.cn/problems/search-in-a-binary-search-tree/)
+### 搜索二叉树
+
+[**力扣**](https://leetcode.cn/problems/search-in-a-binary-search-tree/)
 
 ```Java
 //用到了二叉树的二分查找
@@ -133,7 +141,9 @@ TreeNode searchBST(TreeNode root, int target) {
 }
 ```
 
-### [**插入**](https://labuladong.github.io/algo/2/21/43/#在-bst-中插入一个数)
+### 插入
+
+[**力扣**](https://labuladong.github.io/algo/2/21/43/#在-bst-中插入一个数)
 
 ```Java
 TreeNode insertIntoBST(TreeNode root, int val) {
@@ -147,7 +157,7 @@ TreeNode insertIntoBST(TreeNode root, int val) {
 }
 ```
 
-### [**删除**]()
+### 删除
 
 ```Java
 TreeNode deleteNode(TreeNode root, int key) {
@@ -182,7 +192,9 @@ TreeNode getMin(TreeNode node) {
 }
 ```
 
-### [**穷举二叉树可能组合的数量**](https://leetcode.cn/problems/unique-binary-search-trees/)
+### 穷举二叉树可能组合的数量
+
+[**力扣**](https://leetcode.cn/problems/unique-binary-search-trees/)
 
 ```Java
 int[][] possibility;
@@ -209,7 +221,9 @@ int count(int lo, int hi) {  // [lo, hi]区间的BST个数
 }
 ```
 
-### [**穷举可能性**](https://leetcode.cn/problems/unique-binary-search-trees-ii/)
+### 穷举可能性
+
+[**力扣**](https://leetcode.cn/problems/unique-binary-search-trees-ii/)
 
 ```arrayJava
 List<TreeNode> generateTrees(int n){
