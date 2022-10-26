@@ -61,7 +61,7 @@ void traverse(Graph graph, int s) { //s初始为0，代表起始节点
 [**力扣**](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 
 ```Java
-List<List<Integer>> result = new LinkedList<>();	// 记录所有路径
+ist<List<Integer>> result = new LinkedList<>();	// 记录所有路径
 
 public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
     LinkedList<Integer> path = new LinkedList<>();	// 维护递归过程中经过的路径

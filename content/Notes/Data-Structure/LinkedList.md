@@ -255,7 +255,7 @@ public ListNode middleNode(ListNode head) {
 
 ### 两个链表是否相交
 
-### [**力扣**](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
+[**力扣**](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
 
 ```Java
 public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
