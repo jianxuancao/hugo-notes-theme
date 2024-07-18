@@ -14,6 +14,10 @@ toc: false
 
 ## 工作经历
 
+**复旦数字医疗** | 软件工程师 Software Engineer
+
+医疗软件Java开发。
+
 **University of Essex / Above Surveying** | 研究助理 Research assistant
 
 负责开发针对太阳能农场的无人机巡线程序，使用OpenCV对实时图像进行分析，并利用图像识别的结果进行太阳农场自动巡视。
